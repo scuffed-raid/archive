@@ -1,0 +1,1159 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>suffed-raid archive</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">suffed-raid archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<p>DB가 데이터를 저장하는 방법과 데이터를 요청했을 때 다시 찾을 수 있는 방법</p>
+</blockquote>
+<p><code>개발자가 좋은 성능을 내게끔 엔진이 내부에서 수행되는 작업에 대해 대략적인 개념이 필요하다</code></p>
+<pre><code class="language-jsx">DB에서 특정 키의 값을 효율적으로 찾기 위해서는 다른 데이터 구조가 필요하다
+그러므로 색인의 구조를 살펴보고 여러 색인 구조를 비교하자
+</code></pre>
+<h2 id="색인"><a class="header" href="#색인">색인</a></h2>
+<ul>
+<li>일반적인 개념은 어떤 부가적인 메타데이터를 유지하는 것</li>
+<li>DB 내용에 영향 X, 단지 질의 성능에만 영향</li>
+<li>쓰기(Insert) 과정에서 오버헤드 발생</li>
+<li>어떤 종류의 색인이라도 쓰기 속도를 늦춘다</li>
+</ul>
+<h2 id="해시-색인"><a class="header" href="#해시-색인">해시 색인</a></h2>
+<ul>
+<li>Key-value 형태의 <strong>hash map</strong> 으로 구현</li>
+<li>일반적이고 복작합 색인을 위한 구성 요소로 유용</li>
+<li>키를 데이터 파일의 바이트 오프셋에 매핑</li>
+<li>메모리에 유지하기 때문에 고성능 읽기, 쓰기를 보장</li>
+<li>키의 값이 자주 쟁신되는 상황에 적합</li>
+</ul>
+<p><strong>Log-structured</strong> 형식으로 데이터를 저장하면, 매번 새로운 데이터가 추가됨으로 디스크 공간이 부족해진다.</p>
+<p>디스크 공간을 해결하기 위해 특정 크기의 <strong>Segment</strong>로 나누고, 나눠진 파일에 대해 <strong>Compaction</strong>을 수행하여 한다.</p>
+<ul>
+<li>
+<p>Compaction?</p>
+<p>중복된 키를 버리고 각 키의 최신 갱신 값만 유지하는 것을 의미</p>
+</li>
+</ul>
+<p><code>범위 질의에 효율적이지 않다</code></p>
+<p><code>메모리에 저장해야 함으로 키가 너무 많으면 문제가 된다</code></p>
+<h2 id="ss-테이블과-lsm-트리"><a class="header" href="#ss-테이블과-lsm-트리">SS 테이블과 LSM 트리</a></h2>
+<p>위에서 설명한 <strong>해시 색인</strong>에서 Key로 정렬하는 것</p>
+<p>이처럼 정렬된 형식을 <strong>Sorted String Table</strong> 즉 <strong>SS 테이블</strong> 이라고 한다.</p>
+<p>해쉬 색인과 다른 점은 세그먼트 파일 내 Key 값이 한개만 존재한다.</p>
+<ul>
+<li>
+<p>이로인해 컴팩션 과정은 이미 보장되어 있다</p>
+<p>여러 세그먼트 파일을 병합정렬을 통해 최신화된 세그먼트 파일이 생성된다.</p>
+</li>
+</ul>
+<p>정렬로인해 모든 Key의 색인을 유지할 필요가 없다.</p>
+<ul>
+<li>범위 질의 검색 시 <strong>SS 테이블</strong>에 저장된 Key값을 통해 검색이 가능하다</li>
+</ul>
+<p>새로운 쓰기가 들어오면, 인메모리(<strong>memtable</strong>)에 저장을 하고 <strong>memtable</strong> 용량이 임곗값보다 커지면 <strong>SS 테이블</strong>에 Key-value를 적재 후 <strong>memetable</strong>에서 삭제 시킨다.</p>
+<p>여기서 적재한다는 뜻은 파일(<strong>Segment</strong>)로 저장한다</p>
+<p>읽기 요청이 들어온 경우 <strong>memtable</strong>에서 조회 후, 그 다음 최신 <strong>Segment</strong>에서 찾는 순서로 진행된다</p>
+<h2 id="lsm-트리"><a class="header" href="#lsm-트리">LSM 트리</a></h2>
+<p>정렬된 파일 병합과 <strong>Compaction</strong> 원리를 기반으로 하는 저장소 엔진을 LSM 저장소 엔진이라 부른다.</p>
+<p>DB에 존재하지 않는 Key를 찾는 경우 느릴 수 있다. <strong>memtable → 최신 Segment → 이전 Segment</strong></p>
+<p>위 순서로 가장 오래된 <strong>Segment</strong>까지 거실러 올라감으로 이를 최적화하기 위해 <strong>Bloom filter</strong>를 추가로 사용한다.</p>
+<p><strong>SS 테이블</strong>을 압축하고 병합하는 순서와 시기를 결정하는 다양한 전략이 있다.</p>
+<ul>
+<li>크기 계층
+<ul>
+<li>상대적으로 좀더 새롭고 작은 SS 테이블을 상대적으로 오래됐고 큰 SS테이블에 연이어 병합</li>
+</ul>
+</li>
+<li>레벨 컴팩션
+<ul>
+<li>Key 범위를 더 작은 SS테이블로 나누고 오래된 데이터는 개별 ‘레벨’로 이동</li>
+</ul>
+</li>
+</ul>
+<h2 id="b-트리"><a class="header" href="#b-트리">B 트리</a></h2>
+<p>가장 널리 사용되는 색인 구조</p>
+<p>고정된 블록이나 페이지로 나누고 한 번에 하나의 페이지에 읽기 또는 쓰기를 한다.</p>
+<p>한 페이지는 B 트리의 **루트(root)**로 지정된다. 색인에서 키를 찾을려면 루트에서 시작한다.</p>
+<p>페이지는 여러 키와 하위 페이지의 참조를 포함한다. 각 하위 페이지는 키가 계속 이어지는 범위를 담당하고 참조 사이의 키는 해당 범위 경계가 어디인지 나타낸다.</p>
+<p>최종적으로는 개별 키(leaf page)를 포함하는 페이지에 도달한다. 이 페이지는 각 키의 값을 포함하거나 값을 찾을 수 있는 페이지의 참조를 포함한다.</p>
+<p>B 트리의 한 페이지에서 하위 페이지를 참조하는 수를 분기 계수라고 부른다.</p>
+<h2 id="b-트리와-lsm-트리-비교"><a class="header" href="#b-트리와-lsm-트리-비교">B 트리와 LSM 트리 비교</a></h2>
+<p>LSM 트리는 보통 쓰기에서 더 빠른 반면 B 트리는 읽기에서 더 빠르다.</p>
+<p>LSM 트리에서 더 느린 이유는 각 컴팩션 단계에 있는 여러 가지 데이터 구조와 SS 테이블을 확인해야 하기 때문이다.</p>
+<p>LSM 트리는 보통 B 트리보다 쓰기 처리량을 높게 유지할 수 있다.</p>
+<p>상대적으로 쓰기 증폭이 더 낮고 트리에서 여러 페이지를 덮어쓰는 것이 아니라 순차적으로 컴팩션된 SS 테이블 파일을 쓰기 때문이다.</p>
+<p>LSM 트리는 압축률이 더 좋다. 보통 B 트리보다 디스크에 더 적은 파일을 생성한다. B 트리 저장소 엔진은 파편화로 인해 사용하지 않는 디스크 공간 일부가 남는다.</p>
+<p>LSM 단점으로는 컴팩션 과정이 때로는 진행 중인 읽기와 쓰기의 성능에 영향을 준다는 점</p>
+<p>컴팩션의 또 다른 문제로는 높은 쓰기 처리량에서 발생한다. 대역폭은 유한함으로 단순 쓰기와 <strong>memtable</strong>을 디스크로 방출과 컴팩션 쓰레드가 대역폭을 공유해야 한다.</p>
+<p>B 트리의 장점은 각 키가 색인의 한 곳에만 정확하게 존재한다는 점이다. 로그 구조화 저장소 엔진은 다른 세그먼트에 같은 키의 다중 복사본이 존재할 수 있다.</p>
+<h2 id="트랜잭션-처리나-분석"><a class="header" href="#트랜잭션-처리나-분석">트랜잭션 처리나 분석?</a></h2>
+<ul>
+<li>online transaction processing, <em><strong>OLTP</strong></em>
+<ul>
+<li>Web application에서 발생하는 transaction 데이터</li>
+</ul>
+</li>
+<li>online analytic processing, <strong>OLAP</strong>
+<ul>
+<li><strong>OLTP</strong>에서 발생한 데이터를 정리 가공 후 저장</li>
+<li>Data warehouse</li>
+<li>사용자 입장의 DB가 아닌 비지니스 분석가가 사용</li>
+<li><strong>OLTP</strong> 시스템보다 훨씬 더 적은 수의 질의를 다루지만 각 질의는 대개 매우 다루기 어렵고 짧은 시간에 수백만 개의 레코드를 스캔해야 한다.</li>
+<li>칼럼 지향 저장소 및 칼럼 압축을 통해 데이터를 관리</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>애플리케이션은 필연적으로 시간이 지남에 따라 변하기 때문에 변경 사항을 쉽게 적용할 수 있게 시스템을 구축해야한다. 대부분의 경우, 기능을 변경하려면 저장하는 데이터도 변경이 필요하다.</p>
+<p>많은 서비스가 한 번에 모든 노드에 배포하는 것보다 순회식 업그레이드가 필요하다. 따라서 시스템을 흐르는 모든 데이터는 하위 호환성과 상위 호환성을 제공하는 방식으로 부호화해야 한다.</p>
+<ul>
+<li>하위 호환성: 새로운 코드가 예전 데이터를 읽을 수 있음</li>
+<li>상위 호환성: 예전 코드가 새로운 데이터를 읽을 수 있음</li>
+</ul>
+<h2 id="데이터-부호화-형식"><a class="header" href="#데이터-부호화-형식">데이터 부호화 형식</a></h2>
+<p>데이터를 파일에 쓰거나 네트워크를 통해 전송하려면 스스로를 포함한 일련의 바이트열의 형태로 부호화해야한다. 부호화는 데이터 구조를 네트워크나 디스크 상의 바이트열로 변환하는 다양한 방법으로, 애플리케이션의 아키텍처와 배포의 선택 사항에도 영향을 미친다.</p>
+<ul>
+<li>부호화: 인메모리 표현에서 바이트열로의 전환, 직렬화나 마샬링이라고도 한다.</li>
+<li>복호화: 부호화의 반대 표현, 파싱, 역직렬화, 언마샬링이라고도 부른다.</li>
+</ul>
+<h3 id="언어별-형식"><a class="header" href="#언어별-형식">언어별 형식</a></h3>
+<p>자바의 <code>Serializable</code>, 루비의 <code>Marshal</code>, 파이썬의 <code>pickle</code> 등 프로그래밍 언어에는 인메모리 객체를 바이트열로 부호화하는 기능을 내장한다.</p>
+<h4 id="문제점"><a class="header" href="#문제점">문제점</a></h4>
+<ul>
+<li>다른 언어에서 데이터를 읽기 힘들기 때문에 통합을 방해한다.</li>
+<li>복호화 과정이 임의의 클래스를 인스턴스화하는 것이기 때문에 보안 문제가 되기도 한다.</li>
+<li>쉬운 부호화를 우선시하다 상하위 호환성의 불편한 문제가 등한시 되는 경우가 있다.</li>
+</ul>
+<h3 id="json과-xml-이진-변형"><a class="header" href="#json과-xml-이진-변형">JSON과 XML, 이진 변형</a></h3>
+<p>많은 프로그래밍 언어에서 읽고 쓸 수 있는 표준화된 부호화. JSON, XML, CSV는 텍스트 형식이기 때문에 사람이 읽을 수도 있다. 선택적 스키마 언어가 있어 때로는 유용하지만 때로는 방해된다. 이 형식들은 데이터 타입에 대해 다소 모호한 점이 있기 때문에 숫자나 이진 문자열과 같은 항목은 주의가 필요하다.</p>
+<h4 id="문제점-1"><a class="header" href="#문제점-1">문제점</a></h4>
+<ul>
+<li>XML과 CSV는 숫자와 수로 구성된 문자열을 구분할 수 없다. JSON은 구별할 수는 있지만 정수와 부동소수점 수를 구별하지 않고 정밀도를 지정하지 않는다.</li>
+<li>큰 수를 다룰 때 문제가 된다.</li>
+<li>유니코드 문자열은 지원하지만 이진 문자열을 지원하지 않는다.</li>
+<li>XML과 JSON 모두 스키마를 지원하지만 구현하기가 난해하다.</li>
+<li>CSV는 스키마가 없다.</li>
+</ul>
+<h3 id="이진-부호화"><a class="header" href="#이진-부호화">이진 부호화</a></h3>
+<p>조직 내에서만 사용하는 데이터라면 공통 분모를 찾는 부담감이 덜하기 때문에 조금 더 간편하고 파싱이 빠른 형식을 선택할 수 있다. 데이터셋이 테라바이트 정도가 되면 데이터 타입 선택이 큰 영향을 미치기 때문이다.</p>
+<p>JSON, XML은 이진 형식에 비해 훨씬 많은 공간을 사용한다. 이는 다양한 이진 부호화의 개발로 이어졌다.</p>
+<h4 id="이진-부호화의-종류"><a class="header" href="#이진-부호화의-종류">이진 부호화의 종류</a></h4>
+<p>스리프트와 프로토콜 버퍼는 동일한 원리를 사용하며, 프로그래밍 코드로부터 생성되고 이를 의존한다. 또한 스키마를 변경할 때 매핑을 수동으로 갱신해야 한다. 그러므로 정적 타입 언어에 유용하다. 아브로는 동적 생성 스키마를 고려하여 개발되었으므로 스키마 변경을 간단하게 수행할 수 있다.</p>
+<ol>
+<li>스리프트</li>
+<li>프로토콜 버퍼</li>
+<li>아브로</li>
+</ol>
+<p>스리프트, 프로토콜 버퍼, 아브로같은 이진 스키마 기반 형식은 짧은 길이로 부호화가 가능하며 명확하게 정의된 상위 호환성과 하위 호환성의 맥락에서 효율적이다. 이러한 스키마는 정적 타입 언어에서 문서와 코드 생성에 유용하지만 사람이 읽으려면 복호화가 필요하다는 단점이 있다.</p>
+<h5 id="쓰기-스키마"><a class="header" href="#쓰기-스키마">쓰기 스키마</a></h5>
+<p>데이터를 전송할 때 부호화를 위해 애플리케이션에 포함하는 스키마</p>
+<h5 id="읽기-스키마"><a class="header" href="#읽기-스키마">읽기 스키마</a></h5>
+<p>어떤 데이터를 복호화할 때 의존하는 특정 스키마</p>
+<h2 id="데이터플로-모드"><a class="header" href="#데이터플로-모드">데이터플로 모드</a></h2>
+<p>데이터플로는 매우 추상적인 개념으로, 하나의 프로세스에서 다른 프로세스로 데이터를 전달하는 방법을 말한다. 누가 데이터를 부호화하고 누가 복호화 하는가?</p>
+<h3 id="1-데이터베이스"><a class="header" href="#1-데이터베이스">1. 데이터베이스</a></h3>
+<p>데이터 베이스에 기록하는 프로세스가 부호화하고 데이터베이스에서 읽는 프로세스가 복호화</p>
+<h3 id="2-rest와-rpc-서비스"><a class="header" href="#2-rest와-rpc-서비스">2. REST와 RPC 서비스</a></h3>
+<p>클라이언트가 요청을 부호화하고 서버는 요청을 복호화해서 응답을 부호화하고 최종적으로 클라이언트가 응답을 복호화</p>
+<ul>
+<li>서비스 지향 설계, 마이크로서비스 설계를 지향하면서 중요성이 대두</li>
+<li>미리 정해진 입력과 출력만 허용한 애플리케이션 특화 API</li>
+<li>서비스를 배포와 변경에 독립적으로 만들어 애플리케이션 변경과 유지보수를 더 쉽게 하는 것</li>
+<li>서버와 클라이언트가 사용하는 데이터 부호화는 서비스 API의 버전 간 호환이 가능해야 한다.</li>
+</ul>
+<h4 id="rest"><a class="header" href="#rest">REST</a></h4>
+<p>프로토콜이 아니라 HTTP의 원칙을 토대로 한 설계 철학. 실험과 디버깅에 적합하고 모든 주요 프로그래밍 언어와 플랫폼이 지원한다. 다양한 생태계가 구성되어 있다. URL이나 HTTP Accept 헤더에 버전 번호를 사용하는 방식이 일반적이다.</p>
+<h4 id="rpc"><a class="header" href="#rpc">RPC</a></h4>
+<p>원격 프로시저 호출(remote procedure call, RPC) 모델은 원격 네트워크 서비스 요청을 같은 프로세스 안에서 특정 프로그래밍 언어의 함수나 메서드를 호출하는 것과 동일하게 사용 가능하게 해준다. 이를 위치 투명성이라 한다.</p>
+<h5 id="결함"><a class="header" href="#결함">결함</a></h5>
+<ul>
+<li>로컬 함수 호출은 예측이 가능한 반면 네트워크 요청은 예측이 어렵다</li>
+<li>네트워크 문제로 요청이나 응답이 유실되거나 느려지거나 아예 응답을 하지 않을 수도 있다.</li>
+<li>네트워크 문제는 일상적이며 제어할 수 없다.</li>
+<li>실제로는 처리되고 응답만 유실될 수 있다 (멱등성 문제)</li>
+</ul>
+<p>이런 문제를 해결하기 위해 차세대 RPC 프레임워크는 비동기 작업을 캡슐화하거나 시간에 따른 일련의 요청과 응답으로 구성된 스트림을 제공하기도 한다.</p>
+<h3 id="3-메세지"><a class="header" href="#3-메세지">3. 메세지</a></h3>
+<ul>
+<li>송신자가 부호화하고 수신자가 복호화하는 메시지를 서로 전송해서 노드 간 통신</li>
+<li>클라이언트 요청(메시지)을 낮은 지연 시간으로 다른 프로세스에 전달한다는 점에서는 RPC와 비슷하나, 메세지를 직접 전송하지 않고 임시로 메시지를 저장하는 메시지 브로커 또는 큐, 미들웨어 라는 중간 단계를 거친다는 점은 데이터 베이스와 유사하다.</li>
+<li>특정 데이터 모델을 강요하지 않으므로 유연성을 가진다.</li>
+</ul>
+<h4 id="장점"><a class="header" href="#장점">장점</a></h4>
+<ul>
+<li>수신자에 장애가 있을 때 메시지 브로커가 버퍼처럼 동작할 수 있으므로 시스템 안정성이 향상됨</li>
+<li>죽었던 프로세스에 메시지를 다시 전송할 수 있어 유실이 방지됨</li>
+<li>송신자가 수신자의  IP주소와 포트 번호를 알 필요가 없음</li>
+<li>하나의 메시지를 여러 수신자로 전송할 수 있다.</li>
+<li>송신자와 수신자가 논리적으로 분리된다.</li>
+</ul>
+<h2 id="결론"><a class="header" href="#결론">결론</a></h2>
+<p>주의를 기울이면 ==상하위 호환성과 순회식 업그레이드가 가능하다는 결론==에 다다른다.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>데이터셋이 매우 크거나 질의 처리량이 매우 높다면 복제만으로는 부족하고 데이터를 파티션으로 쪼갤 필요가 있다 이 작업을 샤딩이라고 한다</p>
+<p>데이터 파티셔닝을 원하는 주된 이유는 확장성</p>
+<p>여러 디스트에 부산될 수 있고 질의 부하는 여러 프로세서에 분산될 수 있다.</p>
+<h2 id="파티셔닝-복제"><a class="header" href="#파티셔닝-복제">파티셔닝 복제</a></h2>
+<p>복제와 파티셔닝을 함께 적용해 각 파티션의 복사본을 여러 노드에 저장</p>
+<p>파티션별로 리더와 팔로워가 될 수 있다.</p>
+<h2 id="키값-데이터-파티셔닝"><a class="header" href="#키값-데이터-파티셔닝">키값 데이터 파티셔닝</a></h2>
+<h3 id="키-범위-기준-파티셔닝"><a class="header" href="#키-범위-기준-파티셔닝">키 범위 기준 파티셔닝</a></h3>
+<p>각 파티션에 연속된 범위의 키를 할당</p>
+<p>키의 범위가 동일할 필요가 없다.</p>
+<p>1번 파티션 (A~B), 5번 파팃션 (T~Z)</p>
+<p>데이터를 고르게 분산시키려면 데이터에 맞춰 조정해야한다</p>
+<p>키의 범위는 특정한 접근 패턴이 핫스팟을 유발한다는 단점</p>
+<p>쏠림(skewed) : 특정 파티션에 데이터가 많거나 질의를 많이 받음</p>
+<p>핫스팟 : 불균형하게 부하가 높은 파티션</p>
+<h3 id="키의-해시값-기준-파티셔닝"><a class="header" href="#키의-해시값-기준-파티셔닝">키의 해시값 기준 파티셔닝</a></h3>
+<p>좋은 해시 함수는 쏠린 데이터를 입력으로 받아 균일하게 분산되게 한다</p>
+<p>입력 문자열이 비슷해도 해시값은 숫자 범위 내에서 균일하게 분산된다</p>
+<p>해시값을 사용하면서 키의 장점인 범위 질의 속성을 잃어버린다.</p>
+<h3 id="파티셔닝과-보조-색인"><a class="header" href="#파티셔닝과-보조-색인">파티셔닝과 보조 색인</a></h3>
+<p>문서 기준 보조 색인 파티셔닝</p>
+<p>파티션별로 자신의 보조 색인을 유지하며 담당, 다른 파티션에 어떤 데이터가 저장되는지 신경쓰지 않는다.</p>
+<p>지역 색인이라고 불린다.</p>
+<p>파티셔닝된 데이터베이스에 질의를 보내는 방법을 스캐터(scatter)/개터(gather)</p>
+<p>보조 색인을 사용해서 읽는 질의는 여러 파티셔닝에 대해 질의를 해야함으로 큰 비용이 들 수 있다.</p>
+<h3 id="용어-기준-보조-색인-파티셔닝"><a class="header" href="#용어-기준-보조-색인-파티셔닝">용어 기준 보조 색인 파티셔닝</a></h3>
+<p>각 파티션이 자신만의 보조 색인을 갖게 하는 대신 모든 파티션의 데이터를 담당하는 전역 색인을 만들 수 있다.</p>
+<p>한 노드에만 색인을 저장하게 되면 병목현상이 발생함으로 파티셔닝처리로 저장하게 된다.</p>
+<p>전역 색인은 쓰기가 느리고 복잡하다는 단점</p>
+<h2 id="파티션-재균형화"><a class="header" href="#파티션-재균형화">파티션 재균형화</a></h2>
+<p>한 노드가 담당하던 부하를 다른 노드로 옮기는 과정을 재균형화라고 한다.</p>
+<h3 id="파티션-개수-고정"><a class="header" href="#파티션-개수-고정">파티션 개수 고정</a></h3>
+<p>파티션을 노드 대수보다 많이 만들고 각 노드에 여러 파티션을 할당하는 것</p>
+<h3 id="동적-파티셔닝"><a class="header" href="#동적-파티셔닝">동적 파티셔닝</a></h3>
+<p>파티션 크기가 설정된 값을 넘어서면 파티션을 두 개로 쪼개 각각에 원래 파티션의 절반 정도의 데이터가 포함되게 한다. 반대로 임곗값 아래로 떨어지면 합쳐질 수 있다.</p>
+<h3 id="노드-비례-파티셔닝"><a class="header" href="#노드-비례-파티셔닝">노드 비례 파티셔닝</a></h3>
+<p>노드당 파티션 개수를 고정한다.</p>
+<p>노드 대수가 변함 없는 동안은 개별 파티션 크기가 데이터셋 크기에 비례해서 증가하지만 노드 대수를 늘리면 파티션 크기는 작아진다.</p>
+<p>일반적으로 데이터 용량이 클수록 데이터를 저장할 노드도 많이 필요하므로 이 방법을 쓰면 개별 파티션 크기도 상당히 안정적으로 유지된다.</p>
+<h2 id="요청-라우팅"><a class="header" href="#요청-라우팅">요청 라우팅</a></h2>
+<p>각 노드는 주키퍼에 자신을 등록하고 주키퍼는 파티션과 노드 사이의 신뢰성 잇는 할당 정보를 관리한다.</p>
+<p>클라이언트는 주키퍼 정보를 구독하여 요청 정보를 노드에 할당한다.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>트랜잭션은 자연 법칙이 아니며, 프로그래밍 모델을 단순화 하기 위해 만든 것이다. (트랜잭션이 없어도 복잡한 애플리케이션을 구현할 수 있지만, 원자성이 없으면 오류 처리가 훨씬 더 복잡해지고 격리성이 없으면 동시성 문제가 생길 수 있다.)</p>
+<h3 id="acid"><a class="header" href="#acid">ACID</a></h3>
+<p>1983년, 데이터베이스에서 내결함성 메커니즘을 나타내는 정확한 용어를 확립하기 위해 ACID를 만들었다. 하지만 그 뜻은 모호하며, 데이터베이스마다 ACID 세부 구현은 완전히 다르다.</p>
+<ul>
+<li>
+<p>Atomicity - 원자성 : 여러 변경을 적용하는 도중 오류가 발생했을 때, <strong>어보트</strong>되고 해당 트랜잭션에서 기록한 모든 내용을 취소한다는 보장이다. Abortability가 더 나은 단어.</p>
+</li>
+<li>
+<p>Consistency - 일관성 : 데이터가 항상 진실인 불변식(invariant)을 만족한다는 보장이다. 데이터의 유효성 및 애플리케이션의 정책적인 측면과 관련 있으며, ACID 중 유일하게 애플리케이션의 책임이다. (예를 들면 회계 프로그램에서 차변과 대변이 항상 같아야 한다는 정책) 데이터베이스는 불변식을 위반하는 잘못된 데이터를 쓰지 못하게 막을 수 없다. (단 Foreign Key, Unique 등은 데이터베이스에서 보장한다)</p>
+</li>
+<li>
+<p>Isolation - 격리성 : 여러 트랜잭션이 동시에 같은 레코드에 접근하면 동시성 문제(경쟁 조건)이 생긴다. 이를 해결하기 위해 동시에 실행되는 트랜잭션은 서로 격리된다는 보장이 격리성이다. 트랜잭션은 다른 트랜잭션을 방해할 수 없다.</p>
+<p>직렬성 격리와 스냅숏 격리로 구현됨</p>
+<ul>
+<li><strong>직렬성 격리(Serializable Isolation)</strong> - 동시에 트랜잭션이 실행되었어도, 순차적으로 실행되었을 때의 결과와 동일하도록 보장한다. 성능 손해가 있기 때문에 Real World에서는 거의 사용되지 않음.</li>
+<li><strong>스냅숏 격리(Snapshot Isolation)</strong> - MVCC 등으로 구현한다.</li>
+</ul>
+</li>
+<li>
+<p>Durability - 지속성 : 트랜잭션 커밋이 성공했다면 하드웨어 결함이 발생하거나 데이터베이스가 죽어도 데이터가 손실되지 않는다는 보장이다. Write-ahead log, 복제, 백업 등을 통해 구현한다.</p>
+</li>
+</ul>
+<h3 id="어보트"><a class="header" href="#어보트">어보트</a></h3>
+<p>트랜잭션의 핵심 기능이며 오류가 생기면 어보트(취소)되고 <strong>안전하게 재시도</strong>할 수 있다.</p>
+<h2 id="이상-현상"><a class="header" href="#이상-현상">이상 현상</a></h2>
+<h3 id="더티-읽기"><a class="header" href="#더티-읽기">더티 읽기</a></h3>
+<p>데이터베이스에서 읽을 때 커밋된 데이터만 보게 된다.</p>
+<p>필요한 이유: 부분적으로 갱신된 상태의 데이터베이스를 보면 혼란스러우며 다른 트랜잭션이 잘못된 결정을 하게 되기 때문</p>
+<h3 id="더티-쓰기"><a class="header" href="#더티-쓰기">더티 쓰기</a></h3>
+<p>데이터베이스에 쓸 때 커밋된 데이터만 덮어쓰게 된다. 즉 먼저 수행된 트랜잭션이 데이터를 썼지만, 나중에 수행된 트랜잭션이 이를 덮어써서 커밋하는 것.</p>
+<p>해결: 먼저 쓴 트랜잭션이 커밋이나 어보트될 때까지 두 번째 쓰기를 지연시킨다. 지연을 위해 락을 잡는다. (MySQL: X Lock, PostgreSQL: RowExclusiveLock). 대부분의 트랜잭션 구현을 통해 방지할 수 있다.</p>
+<h3 id="갱신-손실"><a class="header" href="#갱신-손실">갱신 손실</a></h3>
+<p>동시 쓰기 작업 시 발생하는 쓰기 충돌 중 하나. <code>read-modify-write</code> 주기로 작업할 때 발생한다. 두 트랜잭션이 <code>read-modify-write</code> 작업을 하면 두 번째 쓰기 작업이 첫 번째 쓰기 작업을 포함하지 않으므로 하나는 손실된다. 더티 쓰기가 아닌 정상적인 프로세스임에도 결과값과 기대값이 다르다.</p>
+<p><strong>방지법</strong></p>
+<p>원자적 쓰기 연산 :</p>
+<ol>
+<li>원자적 갱신 연산을 쓴다. <code>UPDATE counters SET value = value + 1 WHERE key = 'foo'</code></li>
+<li>해당 Row 읽을 때 Exclusive 락을 획득한다.</li>
+<li>업데이트 로직을 단일 스레드에서 실행하도록 강제한다.</li>
+</ol>
+<p><strong>ORM 쓰면 불완전한 read-modify-write 코드를 작성하기 쉽다.</strong></p>
+<p>명시적인 잠금 :</p>
+<p><code>read-modify-write</code> 주기에서 read 시에 다른 트랜잭션에서 접근 못하도록 해당 Row를 Exclusive 락 잡고 처리한다.</p>
+<p>갱신 손실 자동 감지</p>
+<p>PostgreSQL의 <code>repeatable read</code>, oracle의 <code>serializable</code>, sql server의 snapshot isolation level은 <strong>read-modify-write 도중 갱신 손실을 발견하면 어보트 시킨다</strong></p>
+<blockquote>
+<p>MySQL InnoDB의 Repeatable Read는 갱신 손실을 감지하지 않는다. 이로 인해 제대로 된 Snapshot Isolation을 구현하지 않고 있다고 하기도 한다.</p>
+</blockquote>
+<p>Compare-and-set 연산</p>
+<p>각 Row에다가 Version 붙이고, UPDATE 시마다 Version 이 변경하지 않았을 때만 진행하고 그 외에는 재시도한다. (오래된 스냅숏으로부터 읽었을 경우, 갱신 손실을 방지하지 못할 수 있음)</p>
+<h3 id="read-skew-혹은-non-repeatable-read-이상-현상"><a class="header" href="#read-skew-혹은-non-repeatable-read-이상-현상">Read Skew 혹은 Non-Repeatable Read 이상 현상</a></h3>
+<p>Repeatable Read 에서 생길 수 있는 현상이다. 더티 읽기가 아닌 정상적인 프로세스임에도, 시간 차이로 발생하는 이상 현상. 아래 사례는 Alice가 Account 1, Account 2를 가지고 있을 때, 아래와 같이 문제가 생기는 것을 말함.</p>
+<ol>
+<li>Account 1 조회 → 이 때에는 Account 1 조회 결과 500 달러</li>
+<li>Account 1 → Account 2 으로 100 달러 이체</li>
+<li>Account 2 조회 → 이 때에는 Account 2 조회 결과 400 달러</li>
+</ol>
+<p>해당 케이스는 새로 고침 하면 별 문제가 없다. 그러나 백업이나 분석, 무결성 확인 워크로드에서는 크리티컬할 수 있다.</p>
+<p>Snapshot Isolation를 통해 문제를 막을 수 있다.</p>
+<h3 id="write-skew-이상"><a class="header" href="#write-skew-이상">Write Skew 이상</a></h3>
+<p>두 트랜잭션이 같은 객체를 읽어 그 중 일부를 갱신할 때 나타날 수 있는 <strong>정책적인 위반 사항</strong>.
+두 트랜잭션이 두 개의 다른 객체를 갱신하므로, 더티 쓰기도 갱신 손실도 아니다.</p>
+<ul>
+<li>
+<p>자동 방지: 직렬성 격리가 필요하다. 모든 트랜잭션이 순차적으로 실행되기 때문에 문제가 방지된다.</p>
+</li>
+<li>
+<p>수동 방지: 트랜잭션이 의존하는 로우를 명시적으로 (SELECT FOR UPDATE) 잠글 수 있음.</p>
+<ul>
+<li>팬텀 현상: 트랜잭션에서 실행한 쓰기가 다른 트랜잭션의 검색 질의 결과를 바꾸는 효과. 빈 회의실을 찾아 중복 없이 예약하려는 경우 등. <strong>빈 결과를 SELECT 한 후에 INSERT를 하는 경우에는 아무것도 잠글 것이 없으므로</strong>, 스냅숏 격리로는 안되고 직렬성 격리가 필요하다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="완화된-격리-수준"><a class="header" href="#완화된-격리-수준">완화된 격리 수준</a></h2>
+<p>동시성 문제는 다른 트랜잭션에서 동시에 변경한 데이터를 읽거나, 두 트랜잭션이 동시에 같은 데이터를 변경하려고 할 때만 나타난다.</p>
+<p>직렬성 격리는 성능 비용이 있어 잘 사용되지 않는다. 그래서 어떤 동시성 이슈는 보호해 주지만 모든 동시성 이슈는 보호해 주지 않는 완화된 격리 수준을 많이 사용한다.</p>
+<p><strong>완화된(비직렬성) 격리 수준 종류</strong></p>
+<ul>
+<li>
+<p>Read Uncommitted :</p>
+<ul>
+<li>더티 읽기 있음</li>
+<li>더티 쓰기 없음</li>
+</ul>
+</li>
+<li>
+<p>Read Committed</p>
+<ul>
+<li>MySQL 外 대부분 기본값</li>
+<li>더티 읽기 없음 (과거에 커밋된 값과 현재 트랜잭션에서 쓴 새로운 값 모두를 기억, 쓰기 잠금을 가지고 있지 않은 트랜잭션은 과거의 값을 읽음.)</li>
+<li>더티 쓰기 없음</li>
+<li>갱신 손실 있음</li>
+<li>읽기 스튜 있음</li>
+</ul>
+</li>
+<li>
+<p>Snapshot Isolation</p>
+<ul>
+<li>MySQL 기본값</li>
+<li>더티 읽기 없음</li>
+<li>더티 쓰기 없음</li>
+<li>읽는 쪽에서 쓰는 쪽을 차단하지 않고, 쓰는 쪽에서 읽는 쪽을 차단하지 않음.</li>
+<li>백업이나 분석 등 실행하는 데 오래 걸리며 읽기만 실행하는 쿼리에 요긴함.</li>
+</ul>
+</li>
+</ul>
+<h2 id="serializable"><a class="header" href="#serializable">Serializable</a></h2>
+<ul>
+<li>위의 완화된 격리 수준은 이해하기 어렵고 데이터베이스마다 구현의 일관성이 없다</li>
+<li>경쟁 조건을 감지하는 데 도움이 되는 좋은 도구가 없다 (동시성 문제는 보통 비결정적, 타이밍 이슈 발생)</li>
+<li>Serializable을 사용하면 여러 트랜잭션이 병렬로 실행되더라도 최종 결과는 동시성 없이 한 번에 하나씩 직렬로 실행될 때와 같도록 보장되며, 모든 경쟁 조건을 막아준다. 가장 강력한 격리 수준이라고 여겨진다.</li>
+</ul>
+<h3 id="실제적인-직렬-실행"><a class="header" href="#실제적인-직렬-실행">실제적인 직렬 실행</a></h3>
+<p>한 번에 트랜잭션 하나씩만 직렬로 단일 쓰레드에서 실행됨. (비관적 동시성 제어)</p>
+<p>필요한 데이터가 메모리에 있고, 트랜잭션 코드가 스토어드 프로시저에 모두 있으면, IO 대기가 없고 다른 동시성 제어 메커니즘의 오버헤드를 회피하므로, 단일 스레드로 좋은 처리량을 얻을 수 있음</p>
+<h3 id="2단계-잠금-2pl"><a class="header" href="#2단계-잠금-2pl">2단계 잠금 (2PL)</a></h3>
+<p>처음에 LOCK을 잡기만 하는(Expending Phase) 1단계와 나중에 LOCK을 놓기만 하는(Shrinking Phase) 2단계로 나뉜다고 해서 2PL이라고 불린다.</p>
+<p>2PC(2 Phase Commit)이랑 완전 다르다!</p>
+<p>스냅숏 격리는 <strong>읽는 쪽은 쓰는 쪽을 막지 않으며 쓰는 쪽도 읽는 쪽을 막지 않지만,</strong> 2PL은 <strong>쓰기 트랜잭션은 다른 쓰기 트랜잭션 뿐 아니라 읽기 트랜잭션도 진행하지 못하게 막으며, 읽기 트랜잭션은 다른 읽기 트랜잭션은 허용하지만 쓰기 트랜잭션은 진행하지 못하게 막는다</strong></p>
+<p>MySQL의 Serializable은 2PL로 구현된다. MySQL은 SERIALIZABLE 구현은 REPEATABLE-READ 에다가 모든 SELECT 문을 <code>SELECT FOR SHARE</code> 문으로 인식한다. <code>SELECT</code> 시에는 무조건 S Lock이 걸린다. <code>UPDATE/DELETE</code> 시에는 X Lock을 획득해야 한다. X Lock과 S Lock은 상호 호환되지 않으므로, 읽기는 다른 읽기를 막진 않지만 쓰기를 막고(S Lock때문에), 쓰기는 다른 쓰기도 막고 읽기도 막게 된다(X Lock때문에).</p>
+<p>Deadlock <strong>교착 상태가 아주 많이 발생할 수 있으며 애플리케이션은 재시도해야 한다!</strong></p>
+<h3 id="직렬성-스냅숏-격리ssi"><a class="header" href="#직렬성-스냅숏-격리ssi">직렬성 스냅숏 격리(SSI)</a></h3>
+<p>스냅숏 격리 + 직렬성 충돌 감지 시 어보트시킬 트랜잭션을 결정하는 알고리즘. <strong>직렬성 스냅숏 격리는 완전한 직렬성을 제공하지만 스냅숏 격리에 비해 약간의 성능 손해만 존재</strong></p>
+<p>2단계 잠금은 비관적 동시성 제어 메커니즘인 반면 직렬성 스냅숏 격리는 낙관적 동시성 제어 기법이. 위험한 상황이 발생할 수 있을 때 일단 진행하고 마지막에 커밋할 때 격리 위반을 체크하여 어보트한다.</p>
+<p>쓰는 쪽은 읽는 쪽을 막지 않고, 반대도 마찬가지이며, 읽기 전용 질의는 어떤 잠금도 없이 일관된 스냅숏 위에서 실행된다.</p>
+<p>어보트 비율이 성능 영향을 준다. 트랜잭션 동작을 상세하게 추적하면 정확해지지만 기록 오버헤드가 심해지며, 오랜 시간동안 데이터를 읽고 쓰는 트랜잭션은 충돌 후 어보트의 가능성이 높아짐. 읽기+쓰기 트랜잭션이 짧기를 요구한다.</p>
+<p><strong>쓰기 스큐처럼 질의 결과(전제 조건)와 쓰기 작업 사이 인과적 의존성이 있을 때, 전제 조건이 최신 결과가 아니면, 이를 감지해서 트랜잭션을 어보트시켜서 직렬성 격리를 제공한다.</strong></p>
+<p>어보트 비율은 SSI의 전체적인 성능에 큰 영향을 미친다. 이를테면 오랜 시간 동안 데이터를 읽고 쓰는 트랜잭션은 충돌이 나고 어보트되기 쉬워서, SSI는 읽기 쓰기 트랜잭션이 상당히 짧기를 요구한다 - 오래 실행되는 읽기 전용 트랜잭션은 괜찮다. 2PL이나 싱글쓰레드 실행보다는 덜 민감하다.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>지연 복제로 인해 데이터 서로 다른 DB를 본다면, 다른 데이터를 볼 가능성이 크다.</p>
+<p>이런 불일치는 DB가 어떤 복제 방법을 쓰던 상관없이 일어난다.</p>
+<p>복제 DB는 최소한 최종적 일관성을 보장함으로 시간이 지나면 결국 같은 값을 반환한다.</p>
+<p>일시적인 문제이지만 매우 약한 보장이다.</p>
+<p>데이터 시스템이 선택적으로 제공할 수 있는 강한 일관성 모델을 알아보자</p>
+<h2 id="선형성"><a class="header" href="#선형성">선형성</a></h2>
+<p>시스템에 데이터 복사본이 하나만 있고 그 데이터를 대상으로 수행하는 모든 연산은 원자적인 것처럼 보이게 만드는 것이다.</p>
+<p>클라이언트가 쓰기를 성공하면 그 DB를 읽는 모든 클라이언트는 방금 쓰여진 값을 볼 수 있어야한다. <strong>최신성 보장</strong></p>
+<h3 id="비선형성-시스템"><a class="header" href="#비선형성-시스템">비선형성 시스템</a></h3>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/a2e08bdc-35bc-4edf-bd7c-db6bd64592c3/68c337a2-e4a5-458e-9c13-7044813ae97a/Untitled.png" alt="Untitled" /></p>
+<h3 id="선형성-시스템"><a class="header" href="#선형성-시스템">선형성 시스템</a></h3>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/a2e08bdc-35bc-4edf-bd7c-db6bd64592c3/c4d95389-ff10-4c68-b1f7-adf694402122/Untitled.png" alt="Untitled" /></p>
+<p>새로운 값을 반환한적 있는 데이터는 후속 읽기도 반드시 새로운 값을 반환해야 한다</p>
+<p><code>쓰기 연산이 아직 완료되지 않았더라도</code></p>
+<h3 id="선형성에-기대기"><a class="header" href="#선형성에-기대기">선형성에 기대기</a></h3>
+<ul>
+<li>잠금과 리더 선출</li>
+</ul>
+<pre><code class="language-jsx">단일 리더 복제를 사용하는 시스템은 리더가 하나만 존재하도록 보장
+리더를 선출하는 한 가지 방법은 잠금을 사용하는 것
+모든 노드가 시작할 때 잠금 획득을 시도하고 성공한 노드가 리더가 된다.
+
+잠금을 구현할려면 성형적이어야 한다.
+</code></pre>
+<ul>
+<li>제약 조건과 유일성 보장</li>
+</ul>
+<pre><code class="language-jsx">사용자의 계정, 이메일 주소는 사용자 한명을 식별할 수 있는 유일한 데이터
+파일 저장 시스템에서는 경로와 파일 이름이 동일하게 있을 수 없다.
+창고에 있는 재고보다 더 팔지 못하게 막거나 비행기, 티케팅 예약을 보장
+
+유일성을 위한 선형성 필요
+</code></pre>
+<ul>
+<li>채널 간 타이밍 의존성</li>
+</ul>
+<pre><code class="language-jsx">비선형성 시스템에서 부가적인 통신 채널이 있었기에 발견
+사진 저장 시스템, 저장된 사진을 압축하는 시스템
+선형적이지 않다면 사진을 저장하기도 전에 다른 경쟁 조건의 시스템이 먼저 작동할 수 있다.
+
+경쟁 조건 선형성 필요
+</code></pre>
+<h2 id="선형성-시스템-구현하기"><a class="header" href="#선형성-시스템-구현하기">선형성 시스템 구현하기</a></h2>
+<p>선형성은 근본적으로 ‘데이터 복사본이 하나만 있는 것처럼 동작하고 그 데이터에 실행되는 모든 연산은 원자적’ 실제로 그러면 결함을 견뎌낼 수 없다. 내결함성을 지니기 위해 복제를 사용함</p>
+<ul>
+<li>단일 리더 복제(선형적일 수 있음)</li>
+<li>합의 알고리즘(선형적)</li>
+<li>다중 리더 복제(비선형적)</li>
+<li>리더 없는 복제(아마도 비선형적)</li>
+</ul>
+<h3 id="선형성과-정족수"><a class="header" href="#선형성과-정족수">선형성과 정족수</a></h3>
+<p>엄격한 정족수를 사용한 읽기 쓰기는 선형적인 것 처럼 보인다.</p>
+<p>하지만, 네트워크 지연의 변동이 심하면 경쟁 조건이 생길 수 있다.</p>
+<h2 id="순서화-보장"><a class="header" href="#순서화-보장">순서화 보장</a></h2>
+<p>트랜잭션의 직렬성은 어떤 순서에 따라 실행됨을 보장하는 것</p>
+<p>분산 시스템의 타임스탬프, 시계 사용은 시간을 통해 순서를 결정하기 위한 방법들</p>
+<h3 id="인과성"><a class="header" href="#인과성">인과성</a></h3>
+<p>결과가 나타나기 전에 원인이 발생한다. 무엇이 무엇보다 먼저 일어났는가를 정의</p>
+<p>인과성에 의해 부과된 순서를 지키면 그 시스템은 인과적으로 일관적이라고 한다.</p>
+<p>이벤트에 순서가 부과됨으로 부분 순서를 정의 한다</p>
+<p><strong>선형성은 긴과적 일관성보다 강하다</strong></p>
+<p>선형성은 시스템의 전체 순서를 정한다. 선형성은 인과성을 내포한다.</p>
+<h3 id="일련번호-순서화"><a class="header" href="#일련번호-순서화">일련번호 순서화</a></h3>
+<p>모든 인과적 의존성을 추적하는건 실용성이 떨어지고, 오버헤드가 큼</p>
+<ul>
+<li>일련번호, 타임스탬프로 이벤트 순서를 정하는 방법</li>
+</ul>
+<h2 id="분산-트랜잭션과-합의"><a class="header" href="#분산-트랜잭션과-합의">분산 트랜잭션과 합의</a></h2>
+<p>비공식적으로 합의의 목적은 단지 여러 노드들이 무언가에 동의하게 만드는 것</p>
+<ul>
+<li>노드 리더 선출</li>
+<li>노드 원자적 커밋</li>
+</ul>
+<h3 id="원자적-커밋과-2단계-커밋"><a class="header" href="#원자적-커밋과-2단계-커밋">원자적 커밋과 2단계 커밋</a></h3>
+<p>원자성은 실패한 트랜잭션이 절반만 완료된 결과나 절반만 갱신된 상태로 DB를 어지럽게 하는 걸 막아준다.</p>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/a2e08bdc-35bc-4edf-bd7c-db6bd64592c3/e9bc4da4-7f23-4587-8a98-c0097b32cf9b/Untitled.png" alt="Untitled" /></p>
+<p>2단계 커밋은 여러 노드가 커밋되거나 어보트할 수 있도록 보장하는 알고리즘</p>
+<ul>
+<li>3단계 커밋도 있음</li>
+</ul>
+<h3 id="현실의-분산-트랜잭션"><a class="header" href="#현실의-분산-트랜잭션">현실의 분산 트랜잭션</a></h3>
+<ul>
+<li>분산 시스템에서 원자적 커밋을 달성하여 안전성 보장을 제공</li>
+<li>운영상의 문제 유발</li>
+<li>성능 이슈의 원인</li>
+</ul>
+<p><strong>정확히 한번 메시지 처리</strong></p>
+<p>메시지 확인과 DB 쓰기를 단일 트랜잭션에서 원자적으로 커밋함으로써 이를 구현할 수 있다.</p>
+<p><strong>XA 트랜잭션</strong></p>
+<p>X/Open XA는 이종 기술에 걸친 2단계 커밋을 구현하는 표준</p>
+<p>XA는 프로토콜이 아닌 트랜잭션 코디네이터와 연결되는 인터페이스를 제공하는 C API</p>
+<p><code>코디네이터 : 트랜잭션 관리자</code></p>
+<h3 id="내결합성을-지닌-합의"><a class="header" href="#내결합성을-지닌-합의">내결합성을 지닌 합의</a></h3>
+<p>비공식적으로 합의는 여러 노드가 어떤 것에 동의하는 것을 의미한다.</p>
+<p>여러 사용자가 동시에 동일한 좌석 예약을 하는 경우 처럼 공존할 수 없는 연산들 중 어떤 것이 승자가 되는 지를 결정하기 위해 합의 알고리즘을 사용할 수 있다.</p>
+<p>하나 또는 그 이상의 노드들이 값을 제안하고 합의 알고리즘이 값 중 하나를 결정한다.</p>
+<ul>
+<li><strong>균일한 동의</strong> : 어떤 두 노드도 다르게 결정하지 않는다.</li>
+<li><strong>무결성</strong> : 어떤 노드도 두 번 결정하지 않는다.</li>
+<li><strong>유효성</strong> : 한 노드가 값 v를 결정한다면 v는 어떤 노드에서 제안된 것이다.</li>
+<li><strong>종료</strong> : 죽지 않은 노드는 결국 어떤 값을 결정한다.</li>
+</ul>
+<p><strong>합의 알고리즘의 가정</strong></p>
+<ul>
+<li>죽은 노드는 돌아오지 않는다</li>
+<li>과반수의 노드는 존재해야 한다</li>
+<li>비잔틴 결함은 없다고 가정한다</li>
+</ul>
+<h3 id="합의의-제약"><a class="header" href="#합의의-제약">합의의 제약</a></h3>
+<p>합의 알고리즘을 통해 분산 시스템에서 일관성과 내결함성을 모두 달성할 수 있다. 그러나 합의 알고리즘을 유지하기 위한 비용이 적지 않다.</p>
+<ul>
+<li>동기식 복제가 강제됨</li>
+<li>과반수에 대한 제약</li>
+<li>노드 수 변경에 대한 제약</li>
+<li>네트워크 문제에 민감</li>
+</ul>
+<h3 id="정리"><a class="header" href="#정리">정리</a></h3>
+<p>주키퍼 같은 도구는 애플리케이션이 사용할 수 있는 합의, 장애 감지, 멤버십 서비스를 ‘위탁’하는데 중요한 역할을 수행한다 사용하기 쉽지 않지만 8장에서 설명한 모든 문제를 이겨낼 수 있는 자신만의 알고리즘을 개발하려고 하는 것보다는 훨씐 낫다. 합의로 환원될 수 있는 문제 중 하나를 원하고 그것이 내결합성을 지니기를 윟나다면 주키퍼 같은 것을 쓰는 게 현명하다.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="part-3-파생-데이터"><a class="header" href="#part-3-파생-데이터">Part 3. 파생 데이터</a></h1>
+<p>1, 2부에서는 애플리케이션이 단일 데이터베이스를 사용한다고 가정했으나 대부분의 애플리케이션은 여러 다른 데이터스토어, 색인, 캐시, 분석 시스템 등 몇 가지를 조합해서 사용하고 한 저장소에서 다른 저장소로 데이터를 이동하는 매커니즘을 구현한다.</p>
+<h4 id="데이터를-저장하고-처리하는-시스템"><a class="header" href="#데이터를-저장하고-처리하는-시스템">데이터를 저장하고 처리하는 시스템</a></h4>
+<h5 id="레코드-시스템"><a class="header" href="#레코드-시스템">레코드 시스템</a></h5>
+<p>믿을 수 있는 데이터 버전을 저장한다. 진실의 근원. 사용자 입력과 같은 새로운 데이터가 들어오면 먼저 레코드 시스템에 저장한다.</p>
+<h5 id="파생-데이터-시스템"><a class="header" href="#파생-데이터-시스템">파생 데이터 시스템</a></h5>
+<p>다른 시스템에 존재하는 데이터를 가져와 특정 방식으로 변환하고 처리한 결과. 파생 데이터를 잃게 되더라도 원천 데이터로부터 다시 생성할 수 있다. 대표적인 예가 캐시
+기존 데이터를 복제한다는 의미에서 중복이라고 할 수 있지만 읽기 질의 성능을 높이는 데 필수적이다.</p>
+<h1 id="10장-일괄-처리"><a class="header" href="#10장-일괄-처리">10장. 일괄 처리</a></h1>
+<h4 id="시스템-유형"><a class="header" href="#시스템-유형">시스템 유형</a></h4>
+<h5 id="서비스-온라인-시스템"><a class="header" href="#서비스-온라인-시스템">서비스 (온라인 시스템)</a></h5>
+<p>서비스는 클라이언트로부터 요청이나 지시가 올 때까지 기다린다. 요청이 들어오면 서비스는 가능한 빨리 처리해서 응답을 보내려한다. <strong>응답시간</strong>은 서비스 성능의 중요한 지표이다.</p>
+<h5 id="일괄-처리-시스템-오프라인-시스템"><a class="header" href="#일괄-처리-시스템-오프라인-시스템">일괄 처리 시스템 (오프라인 시스템)</a></h5>
+<p>매우 큰 입력 데이터를 받아서 데이터를 처리하는 작업을 수행하고 결과 데이터를 생산한다. 수 분에서 수 일이 걸리기 때문에 사용자가 대기하지 않는다. <strong>처리량</strong>이 주요 성능 지표이다.
+신뢰할 수 있고 확장 가능하며 유지보수하기 쉬운 애플리케이션을 구축하는 데 매우 중요한 구성요소.</p>
+<h5 id="스트림-처리-시스템-준실시간-시스템"><a class="header" href="#스트림-처리-시스템-준실시간-시스템">스트림 처리 시스템 (준실시간 시스템)</a></h5>
+<p>스트림 처리는 온라인과 오프라인/일괄 처리 사이의 어딘가에 있기 때문에 때로 준실시간 처리라 불린다. 일괄 처리 시스템과 마찬가지로 요청에 대해 응답하지 않으며 입력 데이터를 소비하고 출력 데이터를 생산한다.
+그러나 일괄 처리 시스템은 정해진 크기의 입력 데이터를 대상으로 하는데 반해 스트림 처리는 <strong>입력 이벤트</strong>가 발생한 직후 바로 작동한다. 따라서 일괄 처리 시스템보다 지연 시간이 낮다.</p>
+<h3 id="유닉스-철학"><a class="header" href="#유닉스-철학">유닉스 철학</a></h3>
+<p>유닉스의 자동화, 빠른 프로토타이핑, 증분 반복, 실험 친화, 큰 프로젝트를 청크로 나누어 처리하기 등의 방법은 오늘날의 애자일 및 DevOps 운동과 매우 흡사하다. 유닉스의 설계 철학은 맵리듀스 및 최근에 개발된 데이터플로 엔진에 녹아 있다.</p>
+<h4 id="인터페이스"><a class="header" href="#인터페이스">인터페이스</a></h4>
+<ul>
+<li>특정 프로그램이 다른 어떤 프로그램과도 연결 가능하려면 프로그램 모두가 같은 입출력 인터페이스를 사용해야 한다.</li>
+<li>유닉스에서의 인퍼테이스는 파일</li>
+<li>수십 년이 지났어도 유닉스 도구만큼 상호 운용 또는 구성 면에서 뛰어난 소프트웨어는 많지 않다.</li>
+<li>데이터베이스 간에도 한쪽에서 다른 쪽으로 데이터를 옮기는 게 쉽지 않다.</li>
+<li>데이터는 유닉스 도구와 같은 통합이 부족해서 발칸화 되었다.</li>
+</ul>
+<h4 id="로직과-연결의-분리"><a class="header" href="#로직과-연결의-분리">로직과 연결의 분리</a></h4>
+<ul>
+<li>표준 입력 <code>stdin</code>과 표준 입력 <code>stdout</code>을 사용</li>
+<li>셸 사용자는 유닉스 접근법으로 원하는 대로 입력과 출력을 연결할 수 있다.</li>
+</ul>
+<h4 id="투명성과-실험"><a class="header" href="#투명성과-실험">투명성과 실험</a></h4>
+<ul>
+<li>유닉스 도구는 진행 사항을 파악하기가 상당히 쉽다.</li>
+<li>유닉스 명령에 들어가는 입력 파일은 일반적으로 불변으로 처리된다. 얼만큼 명령을 수행하더라도 입력 파일에는 손상을 주지 않는다.</li>
+<li>어느 시점이든 파이프라인을 중단하고 출력을 해 볼 수 있기 때문에 디버깅에 유용하다.</li>
+<li>특정 파이프라인 단계의 출력을 파일에 쓰고 그 파을을 다음 단계의 입력으로 사용할 수 있다.</li>
+<li>전체 파이프라인을 다시 시작하는게 아니라 다음 단계부터만 재시작 가능하다.</li>
+</ul>
+<p>유닉스 도구는 이와 같이 유용하지만 단일 장비에서만 실행이 가능하다. 이러한 점때문에 하둡과 같은 도구가 필요하다.</p>
+<h2 id="맵리듀스와-분산-파일-시스템"><a class="header" href="#맵리듀스와-분산-파일-시스템">맵리듀스와 분산 파일 시스템</a></h2>
+<h3 id="맵리듀스"><a class="header" href="#맵리듀스">맵리듀스</a></h3>
+<ul>
+<li>하나 이상의 입력을 받아 하나 이상의 출력을 만들어 낸다는 점에서 유닉스 프로세스와 비슷하다.</li>
+<li>그러나 맵리듀스는 수천 대의 장비로 분산해서 실행이 가능하다는 점에서 차이가 있다.</li>
+<li>분산 파일 시스템상의 파일을 입력과 출력으로 사용</li>
+</ul>
+<h5 id="hdfs-hadoop-distributed-file-system"><a class="header" href="#hdfs-hadoop-distributed-file-system">HDFS (Hadoop Distributed File System)</a></h5>
+<p>하둡 맵리듀스 구현 시스템으로, GFS(Google File System)을 재구현한 오픈소스이다. 비공유 원칙을 기반으로 하며 각 장비에서 다른 노드에 저장된 파일에 접근 가능한 데몬 프로세스로 구성된다. HDFS는 매우 큰 하나의 파일 시스템이고 데몬이 실행 중인 모든 장비의 디스크를 사용할 수 있다.
+또한 HDFS는 확장성이 뛰어나고 수만 대의 장비를 묶어서 실행 할 수 있다. 오픈소스이기 때문에 다른 전용 저장소 장치를 사용하는 비용보다 훨씬 저렴하고 대규모 확장이 가능하다.</p>
+<h5 id="맵리듀스-작업"><a class="header" href="#맵리듀스-작업">맵리듀스 작업</a></h5>
+<p>맵리듀스 작업은 4가지 단계로 수행한다. 2단계(맵)과 4단계(리듀스)는 사용자가 직접 작성한 데이터 처리 코드이고 1단계는 파일을 나누어 레코드를 만드는 데 입력 형식 파서를 사용한다.
+대부분 맵리듀스 작업 하나의 출력을 다른 맵리듀스 작업의 입력으로 사용하는 워크플로를 사용한다. 추천 시스템을 구축하는 데 사용하는 워크플로는 50개에서 100개가 일반적이다.</p>
+<ol>
+<li>입력 파일을 읽고 레코드로 쪼갠다.</li>
+<li>각 입력 레코드마다 매퍼 함수를 호출해 키와 값을 추출한다.</li>
+<li>키를 기준으로 키-값 쌍을 모두 정렬한다.</li>
+<li>정렬된 키-값 쌍 전체를 대상으로 리듀스 함수를 호출한다.</li>
+</ol>
+<h5 id="매퍼"><a class="header" href="#매퍼">매퍼</a></h5>
+<p>모든 입력 레코드마다 한 번씩만 호출된다. 입력 레코드로부터 키와 값을 추출한다. 각 레코드를 독립적으로 처리한다.</p>
+<h5 id="리듀서"><a class="header" href="#리듀서">리듀서</a></h5>
+<p>매퍼가 생산한 키-값 쌍을 받아 같은 키를 가진 레코드를 모우고 해당 값의 집합을 반복해 리듀서 함수를 호출한다.</p>
+<h3 id="분산-일괄-처리"><a class="header" href="#분산-일괄-처리">분산 일괄 처리</a></h3>
+<h4 id="파티셔닝"><a class="header" href="#파티셔닝">파티셔닝</a></h4>
+<p>맵리듀스 매퍼는 입력 파일 블록에 따라 파티셔닝된다. 매퍼의 출력은 재파티셔닝해 정렬하고 리듀서 파티션으로 병합한다. 이 과정의 목적은 관련된 모든 데이터를 같은 장소로 가져오는 것이다.</p>
+<h4 id="내결함성"><a class="header" href="#내결함성">내결함성</a></h4>
+<p>맵리듀스는 데이터를 빈번히 디스크에 기록한다. 디스크에 기록하면 개별 테스크가 실패하더라도 전체 작업을 재수행하지 않고 쉽게 복구 할 수 있다. 하지만 작업이 실패하지 않는 경우 수행 시간이 느려지는 것은 감수해야한다. 데이터 플로 엔진은 중간 상태를 구체화하지 않고 대신 메모리에 상태를 유지한다.
+데이터 플로 엔진에서 내결함성을 확보하기 위해서는 실패한 연산자를 재실행 하더라도 결과가 동일하도록 연산자를 결정적으로 만드는 것이 좋다.</p>
+<h4 id="조인-알고리즘"><a class="header" href="#조인-알고리즘">조인 알고리즘</a></h4>
+<p>데이터베이스는 일반적으로 색인을 사용해서 관심 있는 레코드의 위치를 찾는다. 하지만 맵리듀스는 일반적으로 이야기하는 색인 개념이 없다. 맵리듀스 작업은 전체 내용을 읽는 <strong>전체 테이블 스캔 full table scan</strong>을 사용한다. 이런 작업은 대량의 레코드를 대상으로 집계를 할 때 유용하다.</p>
+<h5 id="정렬-병합-조인"><a class="header" href="#정렬-병합-조인">정렬 병합 조인</a></h5>
+<p>조인할 각 입력은 조인 키를 추출하는 매퍼를 통과한다. 파티셔닝, 정렬, 병합 과정을 마치면 같은 키를 가지는 모든 레코드는 하나의 리듀서에서 호출된다. 이 리듀서 함수에서 병합된 레코드를 출력할 수 있다.</p>
+<h5 id="브로드캐스트-해시-조인"><a class="header" href="#브로드캐스트-해시-조인">브로드캐스트 해시 조인</a></h5>
+<p>조인할 입력 두 개 중 하나가 상대적으로 작다면 파티셔닝하지 않고 해시 테이블에 모두 적재할 수 있다. 큰 조인 입력의 각 파티션에서 매퍼를 시작할 때 각 매퍼에 작은 입력으로 만들어진 해시 테이블을 적재하고 큰 입력에서 한 번에 하나씩 레코드를 스캔하면서 각 레코드가 해시 테이블에 존재하는지 질의한다.</p>
+<h5 id="파티션-해시-조인"><a class="header" href="#파티션-해시-조인">파티션 해시 조인</a></h5>
+<p>조인 입력 두 개를 같은 방식으로 파티셔닝하면 해시 테이블 방식을 각 파티션별로 독립적으로 사용할 수 있다.</p>
+<h3 id="맵리듀스를-넘어"><a class="header" href="#맵리듀스를-넘어">맵리듀스를 넘어</a></h3>
+<p>맵리듀스를 직접 사용하는 일은 어렵기 때문에 맵리듀스 상에서 추상화된 다양한 고수준 프로그래밍 모델이 등장했다. 이런 고수준 프로그래밍 모델은 맵리듀스가 어떻게 동작하는지 이해하고 있으면 배우기 쉽고 일반적인 일괄 처리 태스크를 구현하기에 상당히 편하다.</p>
+<h4 id="중간-상태"><a class="header" href="#중간-상태">중간 상태</a></h4>
+<p>대개 한 작업의 출력은 같은 팀 내에서 유지보수하는 다른 특정 작업의 입력으로만 사용된다. 이 경우, 분산 파일 시스템 상에 있는 파일들은 단순히 한 작업에서 다른 작업으로 데이터를 옮기는 수단, 즉 <strong>중간 상태</strong>이다. 추천 시스템을 구축할 때 워크플로가 50개에서 100개가 된다면 여기에는 수 많은 중간 상태가 존재한다.</p>
+<p>중간 상태를 파일로 기록하는 과정을 <strong>구체화</strong>라 한다. 중간 상태를 완전히 구체화하는 맵리듀스 접근법은 유닉스 파이프에 비해 여러 단점이 있다.</p>
+<ul>
+<li>모든 선행 작업이 완료됐을 때만 시작 가능하다. 워크플로 전체 수행 시간은 느려진다.</li>
+<li>매퍼는 종종 중복되기도 한다.</li>
+<li>중간 상태를 저장하는 것은 중간 상태 파일들이 여러 장비에 걸쳐 복제되었다는 의미로 과한 임시 데이터가 된다.</li>
+</ul>
+<h4 id="데이터플로-엔진"><a class="header" href="#데이터플로-엔진">데이터플로 엔진</a></h4>
+<p>맵리듀스에 있는 이러한 문제를 해결하기 위해 분산 일괄 처리 연산을 수행하는 엔진이 새롭게 몇 가지 개발됐다. 이 엔진은 전체 워크플로를 독립된 하위 작업으로 나누지 않고 작업 하나로서 다룬다.
+데이터플로 엔진은 단일 스레드에서 사용자 정의 함수를 반복 호출해 한번에 레코드 한 개씩 처리한다. 그리고 한 함수의 출력을 다른 함수의 입력으로 사용하기 위해 네트워크를 통해 복사한다.</p>
+<p>맵리듀스와 달리 이 함수들은 맵과 리듀스를 번갈아 수행하는 식의 규칙을 엄격하게 지킬 필요가 없고 훨씬 유연한 방법으로 <strong>함수(연산자)</strong> 들을 조합할 수 있다.</p>
+<ul>
+<li>정렬과 같은 값비싼 작업은 실제로 필요할 때만 수행한다.</li>
+<li>필요없는 맵 태스크는 없다.</li>
+<li>워크플로에 조인과 데이터 의존 관계를 명시해서 스케줄러가 어느 데이터가 어디에 필요한지에 대한 개요를 가질 수 있게 한다.</li>
+<li>연산자 간 중간 상태는 메모리나 로컬 디스크에 기록한다.</li>
+<li>연산자들은 입력이 준비되는 즉시 실행을 시작할 수 있다.</li>
+<li>새로운 연산자를 실행할 때 이미 존재하는 자바 가상 머신을 재활용할 수 있다.</li>
+<li>위와 같은 최적화로 인해 수행 속도가 훨씬 빠르다.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><pre><code class="language-jsx">어플리케이션을 설계하고 구축하는 방법을 근본적으로 개선하는 아이디어와 접근법을 제시
+이 책의 목적은 어플리케이션과 시스템을 신뢰할 수 있고 확장 가능하며 
+유지보수하기 쉽게 만드는 방법을 탐구하는 것
+</code></pre>
+<h3 id="1-데이터-통합"><a class="header" href="#1-데이터-통합">1. 데이터 통합</a></h3>
+<h3 id="11-파생-데이터에-특화된-도구의-결합"><a class="header" href="#11-파생-데이터에-특화된-도구의-결합">1.1 파생 데이터에 특화된 도구의 결합</a></h3>
+<h3 id="111-데이터플로에-대한-추론"><a class="header" href="#111-데이터플로에-대한-추론">1.1.1 데이터플로에 대한 추론</a></h3>
+<ul>
+<li>같은 데이터의 사본을 여러 저장소 시스템에 유지해야 할 때 입력과 출력을 분명히 해야한다.</li>
+<li>어디서 데이터를 처음으로 기록하는지, 어떤 표현형이 어떤 원본에서 파생되는지, 데이터를 모두 올바른 장소로 올바른 형식으로 어떻게 넣는지 등에 대해 충분히 고려해야 한다.</li>
+<li>파생 데이터 시스템은 이벤트 로그를 기반으로 갱신하면 결정적이고 멱등성을 지녀 결함에서 복구하기가 상당히 쉬워진다.</li>
+</ul>
+<h3 id="112-파생-데이터-대-분산-트랜잭션"><a class="header" href="#112-파생-데이터-대-분산-트랜잭션">1.1.2 파생 데이터 대 분산 트랜잭션</a></h3>
+<ul>
+<li>파생 데이터와 분산 트랜잭션의 큰 차이점
+<ul>
+<li>트랜잭션 시스템은 일반적으로 선형성을 지원한다. (자신이 쓴 내용 읽기 같은 유용한 기능을 보장)</li>
+<li>파생 데이터 시스템은 대개 비동기로 갱신되기 때문에 기본적으로 동시간 갱신 보장을 하지 않는다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="113-전체-순서화의-제약"><a class="header" href="#113-전체-순서화의-제약">1.1.3 전체 순서화의 제약</a></h3>
+<ul>
+<li>작은 시스템에서 이벤트 로그의 순서 전체를 보장하는 것은 가능하나 규모가 커지면 한계가 생긴다.</li>
+<li>이벤트 전체 순서를 결정하는 것은 <strong>전체 순서 브로드캐스트</strong> 라고 하고, 이것은 합의와 동등하다.</li>
+</ul>
+<h3 id="12-일괄-처리와-스트림-처리"><a class="header" href="#12-일괄-처리와-스트림-처리">1.2 일괄 처리와 스트림 처리</a></h3>
+<ul>
+<li>데이터 통합의 목표는 데이터를 올바른 장소에 올바른 형태로 두는 것</li>
+<li>이것을 위해 입력을 소비해 적절한 출력으로 기록해야 한다.</li>
+</ul>
+<h3 id="121-파생-상태-유지"><a class="header" href="#121-파생-상태-유지">1.2.1 파생 상태 유지</a></h3>
+<ul>
+<li>일괄 처리는 결정적이고 출력이 입력에만 의존하며, 명시적 출력 외에는 다른 부수 효과가 없는 순수 함수를 장려한다.</li>
+<li>입력과 출력을 잘 정의한 결정적 함수의 원리는 내결함성에 도움이 될 뿐만 아니라 조직 내의 데이터플로 추론을 단순화한다.</li>
+<li>비동기 방식을 사용하면 이벤트 로그 기반 시스템을 훨씬 견고하게 만들 수 있다.</li>
+<li>색인을 비동기 방식으로 유지한다면 파티션 간 통신에서 더욱 신뢰성 있고 확장성이 좋아진다.</li>
+</ul>
+<h3 id="122-애플리케이션-발전을-위한-데이터-재처리"><a class="header" href="#122-애플리케이션-발전을-위한-데이터-재처리">1.2.2 애플리케이션 발전을 위한 데이터 재처리</a></h3>
+<ul>
+<li>파생 데이터를 유지할 때 일괄 처리와 스트림 처리는 모두 유용하다.
+<ul>
+<li><strong>스트림</strong> 처리를 이용하면 입력의 변화를 <strong>빠르게</strong> 파생 뷰에 반영할 수 있다.</li>
+<li><strong>일괄 처리 시스템</strong>을 사용하면 <strong>누적된 상당한 양</strong>의 과거 데이터를 재처리해 기존 데이터셋을 반영한 새 파생 뷰를 만들 수 있다.</li>
+</ul>
+</li>
+<li>기존 데이터를 재처리하는 것은 시스템을 유지보수하기 위한 좋은 메커니즘으로 새로운 기능 추가와 변경된 요구사항에 대응할 수 있다.
+<ul>
+<li>재처리 없이 스키마를 변경하는 작업은 새 필드를 추가하는 것과 같은 간단한 것으로 제한된다.</li>
+<li>반면 재처리를 이용하면 완전히 다른 모델로 데이터셋을 재구축할 수 있다.</li>
+</ul>
+</li>
+<li>파생 뷰를 사용하면 <strong>점진적</strong> 발전이 가능하다.
+<ul>
+<li>이전 스키마와 새 스키마를 함께 유지해 같은 데이터를 기반으로 두 개의 독립적인 파생 뷰를 만들 수 있으며 점진적으로 새 뷰를 접근하는 비율을 늘려 기존 뷰를 내릴 수 있다.</li>
+<li>점진적 이전의 장점은 처리의 모든 단계에서 뭔가 잘못됐을 때 쉽게 이전으로 되돌릴 수 있다는 점이다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-데이터베이스-언번들링"><a class="header" href="#2-데이터베이스-언번들링">2 데이터베이스 언번들링</a></h3>
+<h3 id="21-데이터-저장소-기술-구성하기"><a class="header" href="#21-데이터-저장소-기술-구성하기">2.1 데이터 저장소 기술 구성하기</a></h3>
+<ul>
+<li>데이터베이스에 내장된 기능과 일괄 처리와 스트림 처리로 구축하는 파생 데이터 시스템 사이에는 유사점이 있다.</li>
+</ul>
+<h3 id="211-색인-생성하기"><a class="header" href="#211-색인-생성하기">2.1.1 색인 생성하기</a></h3>
+<ul>
+<li>CREATE INDEX를 실행할 때마다 데이터베이스는 근본적으로 기존 데이터셋을 재처리해서 기존 데이터를 반영하는 새로운 뷰로서 색인을 파생하는데, 이것은 스트림 시스템에서 변경 데이터 캡처의 예비 과정과도 상당히 유사하다.</li>
+</ul>
+<h3 id="212-모든-것의-메타데이터베이스"><a class="header" href="#212-모든-것의-메타데이터베이스">2.1.2 모든 것의 메타데이터베이스</a></h3>
+<ul>
+<li>일종의 전체 조직의 데이터플로가 거대한 데이터베이스처럼 볼 수 있다.</li>
+<li>일괄 처리와 스트림 처리자는 트리거와 스토어드 프로시저 그리고 구체화 뷰 유지 루틴을 정교하게 구현한 것과 같다.</li>
+</ul>
+<h3 id="22-데이터플로-주변-애플리케이션-설계"><a class="header" href="#22-데이터플로-주변-애플리케이션-설계">2.2 데이터플로 주변 애플리케이션 설계</a></h3>
+<ul>
+<li>현대 데이터 시스템은 내결함성과 확장성이 있어야 하고 지속성 있게 데이터를 저장해야 한다.</li>
+<li>또한 데이터 시스템은 시간이 흐름에 따라 다른 그룹의 사람들이 개발한 이종 기술과도 통합이 가능해야 할 뿐 아니라 이미 존재하는 라이브러리와 서비스를 재사용 가능해야 한다.</li>
+</ul>
+<h3 id="221-파생-함수로서의-애플리케이션-코드"><a class="header" href="#221-파생-함수로서의-애플리케이션-코드">2.2.1 파생 함수로서의 애플리케이션 코드</a></h3>
+<ul>
+<li>데이터셋이 다른 데이터셋으로부터 파생될 때는 변환 함수 몇가지를 거친다.</li>
+<li>보조 색인용 파생 함수는 아주 일반적인 요구사항이라서 많은 데이터베이스에 핵심 기능으로 내장돼 있다.</li>
+<li>파생 데이터셋을 생성하는 함수가 보조 색인 생성 함수와 같은 비슷한 표준 함수가 아니라면 사용자 정의 코드를 써서 애플리케이션에 특화된 측면을 다뤄야 한다.</li>
+</ul>
+<h3 id="222-애플리케이션-코드와-상태의-분리"><a class="header" href="#222-애플리케이션-코드와-상태의-분리">2.2.2 애플리케이션 코드와 상태의 분리</a></h3>
+<ul>
+<li>이론상 데이터베이스가 운영체제와 같이 임의의 애플리케이션 코드를 배포하는 환경이 될 수 있으나 이는 현실성이 부족하다.</li>
+<li>메소스, 얀, 도커, 쿠버네티스 등과 같은 배포와 클러스터 관리 도구는 애플리케이션 코드를 수행하는 목적으로 특별히 설계되었다.</li>
+<li>오늘날 대부분의 웹 애플리케이션은 상태 비저장 서비스로 배포된다.
+<ul>
+<li>상태 비저장 서비스 내에서 사용자 요청은 어떤 애플리케이션 서버로도 라우트될 수 있다.</li>
+<li>상태 관리(데이터베이스)와 상태 비저장 애플리케이션 로직을 분리한다.</li>
+</ul>
+</li>
+<li>전형적인 웹 애플리케이션 데이터베이스는 네트워크를 통해 동기식으로 접근할 수 있는 변경 가능한 공유 변수와 같이 동작한다.
+<ul>
+<li>애플리케이션은 이 변수를 읽고 갱신할 수 있으며 데이터베이스는 이 변수를 지속성 있게 만들고 동시성 제어와 내결함성을 지원한다.</li>
+</ul>
+</li>
+<li>대부분의 프로그래밍 언어에서 변경 가능한 변수의 변경을 구독할 수 없다.</li>
+<li>데이터베이스의 내용이 변경됐는지 확인하고 싶다면 폴링, 즉 주기적으로 질의를 반복하는 게 유일한 방법이다.</li>
+</ul>
+<h3 id="223-스트림-처리자와-서비스"><a class="header" href="#223-스트림-처리자와-서비스">2.2.3 스트림 처리자와 서비스</a></h3>
+<ul>
+<li>단일 일체식 애플리케이션에 비해 서비스 지향 아키텍처의 가장 큰 장점은 느슨한 연결을 통한 조직적 확장성이다.</li>
+<li>서로 다른 팀은 다른 서비스를 운영하기에, 서비스가 독립적으로 배포되고 갱신될 수 있다.</li>
+<li>스트림 연산자로 데이터플로 시스템을 구성하는 것은 마이크로서비스 접근법과 유사한 특징이 상당히 많지만 기반이 되는 통신 메커니즘은 매우 다르다.
+<ul>
+<li>마이크로서비스는 동기식 요청/응답</li>
+<li>스트림 연산자 시스템은 단방향 비동기식 메시지 스트림</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-파생-상태-관찰하기"><a class="header" href="#23-파생-상태-관찰하기">2.3 파생 상태 관찰하기</a></h3>
+<ul>
+<li>데이터플로 시스템은 검색 색인이나 구체화 뷰 또는 예측 모델과 같은 파생 데이터셋을 생성하고 최신 상태로 유지하는 과정에 사용할 수 있다.</li>
+<li>시스템에 정보를 기록할 때마다 일괄 처리와 스트림 처리의 여러 단계를 거친 다음 결과적으로 기록된 데이터를 모든 파생 데이터셋에 통합해 갱신한다.</li>
+<li>파생 데이터를 생성하는 이유는 이후에 같은 질의를 할 가능성이 크기 때문이다.</li>
+<li>파생 데이터셋은 쓰기와 읽기가 만나는 장소로, 쓰기 시간에 필요한 작업의 양과 읽기 시간에 필요한 작업의 양 간에 트레이드 오프를 나타낸다.</li>
+</ul>
+<h3 id="231-구체화-뷰와-캐싱"><a class="header" href="#231-구체화-뷰와-캐싱">2.3.1 구체화 뷰와 캐싱</a></h3>
+<ul>
+<li>전문 검색 색인은 좋은 예제로, 키워드에서 모든 단어를 포함(AND)하거나 어떤것이든 포함(OR)하는 등의 논리를 적용해야 한다.</li>
+<li>색인이 존재하지 않는다면 검색 질의는 모든 문서를 스캔해야 한다.</li>
+<li>색인이 없으면 쓰기 경로의 작업량은 줄지만 읽기 경로의 작업이 상당히 늘어난다.</li>
+<li>고정된 가장 공통적인 질의 집합의 검색 결과를 미리 계산 해 색인까지 가지 않고 빠르게 처리 할 수 있다. 이를 일반적으로 공통 질의 <strong>캐시</strong>라고 한다.</li>
+</ul>
+<h3 id="232-오프라인-대응-가능한-상태-저장-클라이언트"><a class="header" href="#232-오프라인-대응-가능한-상태-저장-클라이언트">2.3.2 오프라인 대응 가능한 상태 저장 클라이언트</a></h3>
+<ul>
+<li><strong>오프라인 우선 애플리케이션</strong>은 인터넷 연결 요구 없이 같은 장치의 로컬 데이터베이스를 이용해 최대한 많은 일을 하고, 네트워크 연결이 가능할 때 백그라운드에서 원격 서버와 동기화 한다.</li>
+<li>장치 상 상태를 <strong>서버 상 상태의 캐시</strong>로 생각할 수 있다.</li>
+</ul>
+<h3 id="233-상태-변경을-클라이언트에게-푸시하기"><a class="header" href="#233-상태-변경을-클라이언트에게-푸시하기">2.3.3 상태 변경을 클라이언트에게 푸시하기</a></h3>
+<ul>
+<li>명시적으로 변경 사항을 폴링하지 않으면 장치의 상태는 갱신되지 않은 신선도가 떨어지는 캐시다.</li>
+<li>많은 최신 프로토콜이 HTTP의 기본적인 요청/응답 패턴을 벗어나고 있다.
+<ul>
+<li>서버 전송 이벤트(이벤트 소스, Event Source API)와 웹소켓(WebSocket) 은 웹브라우저가 서버와 TCP 접속을 유지하면서 연결이 유지되는 동안 서버가 주도적으로 메시지를 브라우저에 보내는 방식의 통신 채널을 제공한다.</li>
+<li>이 방식을 통해 서버의 로컬에 저장된 상태가 변경되었을 때 서버에서 주도적으로 사용자에게 알려줘, 클라이언트 측 상태의 신선도가 떨어지는 것을 줄여준다.</li>
+</ul>
+</li>
+<li>로그 기반 메시지 브로커를 통해도 오프라인 장치에 대한 알림을 날려줄 수 있다.</li>
+</ul>
+<h3 id="234-종단-간-이벤트-스트림"><a class="header" href="#234-종단-간-이벤트-스트림">2.3.4 종단 간 이벤트 스트림</a></h3>
+<ul>
+<li>상태 저장 클라이언트와 사용자 인터페이스 개발용 최신 도구는 이미 내부적으로 사용자 입력을 표현하는 <strong>이벤트 스트림</strong>이나 <strong>서버 응답 스트림을 구독</strong>하는 방식을 사용해 클라이언트 측 상태를 관리한다.</li>
+<li>상태 변경은 종단 간(end-to-end) 쓰기 경로를 따라 흐를 수 있다.
+<ul>
+<li>즉, 상태 변경이 트리거된 한 장치로부터 다른 장치의 상태를 보고 있는 사람의 사용자 인터페이스까지 이어진다.</li>
+</ul>
+</li>
+<li>다만 쓰기 경로를 최종 사용자까지 확장하려면 근본적으로 시스템을 구축하는 방식을 재고할 필요가 있다.
+<ul>
+<li>요청/응답 상호작용 방식에서 벗어나 발행/구독 데이터플로 방식으로 변경해야 한다.</li>
+<li>데이터 시스템을 설계한다면 현재 상태를 단지 질의하는 방식이 아니라 변경 사항을 구독하는 방식을 염두에 두어야 한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="235-읽기도-이벤트다"><a class="header" href="#235-읽기도-이벤트다">2.3.5 읽기도 이벤트다</a></h3>
+<ul>
+<li>일회성 읽기 요청은 단지 조인 연산자를 통해 흘러가고 이후 즉시 사라진다.</li>
+<li>그러나 읽기 이벤트 로그를 기록하면 잠재적으로 인과적 의존성과 시스템 전체의 데이터 출처를 추적할 수 있다는 장점이 있다.</li>
+<li>지속성 있는 저장소에 읽기 이벤트를 기록하면 인과적 의존성을 추적하기가 더 용이하나,추가 저장소가 필요하며 I/O 비용이 발생한다.</li>
+</ul>
+<h3 id="3-정확성을-목표로"><a class="header" href="#3-정확성을-목표로">3. 정확성을 목표로</a></h3>
+<h3 id="31-데이터베이스에-관한-종단-간-논증"><a class="header" href="#31-데이터베이스에-관한-종단-간-논증">3.1 데이터베이스에 관한 종단 간 논증</a></h3>
+<ul>
+<li>직렬성 트랜잭션 같은 비교적 강력한 안전성 속성을 지원하는 데이터 시스템을 사용해도 애플리케이션에 데이터 유실과 손상이 없을 것이라는 보장은 없다.</li>
+</ul>
+<h3 id="311-연산자의-정확히-한-번-실행"><a class="header" href="#311-연산자의-정확히-한-번-실행">3.1.1 연산자의 정확히 한 번 실행</a></h3>
+<ul>
+<li>실패한다면 포기하거나 재시도하며, 재시도는 중복의 위험성이 있다.</li>
+<li>정확히 한 번 연산은 재시도시 동일한 결과를 최종적으로 얻기 위해 계산을 조정한다는 뜻이다.</li>
+<li>가장 효과적인 접근법 중 하나는 연산은 <strong>멱등</strong>으로 만드는 것이다.</li>
+</ul>
+<h3 id="312-연산-식별자"><a class="header" href="#312-연산-식별자">3.1.2 연산 식별자</a></h3>
+<ul>
+<li>고유 ID를 사용해 중복 요청을 억제할 수 있다.</li>
+<li>고유 식별자를 만들어 클라이언트 애플리케이션 내 숨은 폼 필드에 포함하거나 유효한 모든 폼 필드의 해시값을 계산해서 연산 ID를 만들 수 있다.</li>
+</ul>
+<h3 id="32-제약-조건-강제하기"><a class="header" href="#32-제약-조건-강제하기">3.2 제약 조건 강제하기</a></h3>
+<h3 id="321-유일성-제약-조건은-합의가-필요하다"><a class="header" href="#321-유일성-제약-조건은-합의가-필요하다">3.2.1 유일성 제약 조건은 합의가 필요하다</a></h3>
+<ul>
+<li>유일성 제약 조건을 강제하기 위해서는 합의가 필요하다.</li>
+<li>합의를 달성하는 가장 일반적인 방법은 단일 노드를 리더로 만들고 해당 노드가 모든 결정을 하게끔 책임을 부여하는 것이다.</li>
+<li>유일성 검사는 유일성이 필요한 값을 기준으로 파티셔닝하면 확장 가능하다.</li>
+<li>비동기 마스터 복제는 충돌되는 쓰기를 받아들여 값이 유일하지 않을 수 있기 때문에 쓸 수 없다.</li>
+<li>제약 조건을 위반하면 어떤 쓰기도 즉시 거부하기를 원한다면 <strong>동기식 코디네이션</strong>이 필요하다.</li>
+</ul>
+<h3 id="322-로그-기반-메시징의-유일성"><a class="header" href="#322-로그-기반-메시징의-유일성">3.2.2 로그 기반 메시징의 유일성</a></h3>
+<ul>
+<li>로그는 모든 소비자가 동일한 순서로 메시지를 보도록 보장한다.</li>
+<li>공식적으로 이 보장을 <strong>전체 순서 브로드캐스트(total order broadcast)</strong> 라 부르고 이것은 합의와 동일하다.</li>
+<li>스트림 처리자는 단일 스레드 상에서 한 로그 파티션의 모든 메시지를 순차적으로 소비한다.</li>
+<li>유일성 기준으로 로그를 파티셔닝하면 스트림 처리자는 충돌이 발생한 연산 중 어떤 것이 처음 들어온 연산인지 판단할 수 있다.</li>
+<li>파티션 수를 늘리면 쉽게 확장할 수 있어 대규모 요청을 처리할 수 있다.</li>
+<li>근본 원리는 충돌이 발생할 수 있는 쓰기를 모두 같은 파티션으로 라우팅하고 순서대로 처리하는 것으로, 유일성 제약 조건뿐만 아니라 다른 많은 제약 조건에도 사용할 수 있다.</li>
+</ul>
+<h3 id="33-적시성과-무결성"><a class="header" href="#33-적시성과-무결성">3.3 적시성과 무결성</a></h3>
+<ul>
+<li>트랜잭션의 한 가지 편리한 속성은 대개 선형성이 있다는 점입니다.
+<ul>
+<li>즉, 기록자는 트랜잭션이 커밋될 때까지 기다리고 커밋 이후부터 해당 쓰기가 모든 독자에게 보인다.</li>
+</ul>
+</li>
+<li>일반적으로, <strong>일관성</strong>이라는 용어는 두 가지 요구사항이 합쳐진 것을 볼 수 있다.
+<ul>
+<li><strong>적시성(Timeliness)</strong> : 사용자가 시스템을 항상 최신 상태로 관측 가능</li>
+<li><strong>무결성(Integrity)</strong> : 손상이 없음</li>
+</ul>
+</li>
+<li>적시성 위반은 "최종적 일관성"이고 무결성 위반은 "영구적 불일치" 로 볼 수 있다.</li>
+<li>적시성을 위반하면 성가시고 혼란스러울 수 있으나, 무결성을 위반하면 파국을 맞는다.</li>
+</ul>
+<h3 id="331-데이터플로-시스템의-정확성"><a class="header" href="#331-데이터플로-시스템의-정확성">3.3.1 데이터플로 시스템의 정확성</a></h3>
+<ul>
+<li><strong>ACID 트랜잭션</strong>은 대개 적시성과 무결성 양쪽 모두 보장하므로 적시성과 무결성을 구분하는 것은 중요하지 않다.</li>
+<li>반면 <strong>이벤트 기반 데이터플로 시스템</strong>은 적시성과 무결성을 분리한다. 무결성이 스트림 시스템의 핵심</li>
+<li>신뢰성 있는 스트림 처리 시스템은 분산 트랜잭션과 원자적 커밋 프로토콜 없이 무결성을 보존할 수 있다.</li>
+<li>무결성은 아래 메커니즘의 결합을 통해 달성할 수 있다.
+<ul>
+<li>쓰기 연산을 단일 메시지로 표현하기</li>
+<li>결정적 파생 함수를 사용해 해당 단일 메시지에서 모든 상태 갱신을 파생하기</li>
+<li>클라이언트가 생성한 요청 ID를 모든 처리 단계를 통해 전달하기</li>
+<li>메시지를 불변으로 만들고 필요 시 파생 데이터 재처리하기</li>
+</ul>
+</li>
+</ul>
+<h3 id="332-느슨하게-해석되는-제약-조건"><a class="header" href="#332-느슨하게-해석되는-제약-조건">3.3.2 느슨하게 해석되는 제약 조건</a></h3>
+<ul>
+<li>유일성 제약 조건을 강제하려면 합의가 필요하고 합의는 일반적으로 모든 이벤트를 단일 노드를 통해 특정 파티션으로 보내 처리하는 방식으로 구현된다.</li>
+<li>많은 애플리케이션이 훨씬 완화된 유일성 개념을 사용해 이 제한을 피할 수 있다.
+<ul>
+<li>두 사람이 동시에 같은 사용자명을 등록하거나 같으 좌석을 예약한다면, 두 사람 중 한 사람에게 사과 메시지를 보내 다른 이름이나 좌석을 고르게끔 부탁할 수 있다. 이러한 종류의 변경 방법을 <strong>보상 트랜잭션</strong>이라고 한다.</li>
+<li>소비자가 재고보다 더 많은 상품을 주문한다면 일단 재고 주문을 더 넣고 소비자에게 배송 지연에 대해 사과하고 가격을 할인해준다.</li>
+<li>비슷하게 많은 항공사가 일부 승객이 비행기를 놓칠 것으로 예상하고 초과 예약을 받는다.</li>
+<li>누군가 계좌 잔고보다 더 많은 돈을 뺀다면 은행은 그 사람에게 초과 인출 수수료를 부과하고 빚진 돈을 값으라고 요구한다.</li>
+</ul>
+</li>
+<li>많은 비즈니스 맥락에서 제약 조건을 일시적으로 위반하고 나중에 사과해 바로잡는 것은 실제로 수용 가능한 방법이다.</li>
+<li>애플리케이션은 <strong>무결성을 반드시 요구</strong>한다. 그러나 제약 조건을 강제하는 상황에서도 적시성은 <strong>반드시</strong> 필요한 것은 아니다.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="11-엘라스틱서치의-탄생"><a class="header" href="#11-엘라스틱서치의-탄생">1.1 엘라스틱서치의 탄생</a></h2>
+<p>엘라스틱서치가 등장할 시기에는 사이트 내에서 전문 검색 기능(Fullscan)이 요구되었다. 인터넷 검색 서비스는 계속해서 등장하고 있었지만 구현체를 공개하지 않아 일반 개발자는 검색 이면에 숨은 비밀에 접근하기 어려웠다. 따라서 기업이 제공하는 솔루션에 의존할 수밖에 없어서 검색 기능의 발전에 큰 걸림돌이 되었다.</p>
+<p>1999년 더그 커딩이 만든 검색 엔진 라이브러리 루씬은 2001년도에 아파치 자카르타에 합류하고 규모가 점점 확장되어 2005년에 본격적인 아파치 프로젝트로 분리된다. 루씬은 전문 인덱싱과 검색 기능을 요구하는 애플리케이션에 사용되기 시작했다.
+하지만 루씬은 라이브러리 형태로 되어 있어 제대로 사용하기 위해 해야 할 작업이 무척 많았다. 이때 기술 잡지를 만들던 CNET 네트워크에서 2004년경 사내 웹사이트 검색을 위해 직접 제작한 검색 엔진의 소스 코드인 솔라 프로젝트를 2006년에 아파치 재단에 기부하였다. 솔라는 상용 서비스에 적합한 수준의 높은 트래픽을 뒷받침하는 고성능의 검색 엔진으로 많은 사람들의 관심을 끌었고, 2010년 3월 루씬과 통합되어 함께 개발을 진행하게 된다. 2021년 2월 루씬에서 분리되어 독립된 아파치 최상위 프로젝트로 자리 잡았다.</p>
+<p>CNET 네트워크가 솔라를 개발하고 있었을 2004년 무렵 자신의 부인이 손쉽게 레시피를 검색할 수 있도록 루씬을 기반으로 캄파스 프로젝트를 진행하던 사이 배넌은 확장 가능한 검색 엔진 솔루션을 만들면 좋겠다는 생각을 하게 된다. 처음부터 분산 환경을 위한 솔루션, HTTP 상에서 JSON으로 인터페이스를 지원하는 솔루션, 자바 이외에도 다양한 프로그래밍 언어를 지원하는 솔루션을 표방하고 작업에 들어간 배넌은 2010년 2월에 드디어 엘라스틱서치를 공개한다.</p>
+<h2 id="12-엘라스틱-스택으로-발전"><a class="header" href="#12-엘라스틱-스택으로-발전">1.2 엘라스틱 스택으로 발전</a></h2>
+<p>엘라스틱은 단순 검색 엔진에 머무르는 대신 플랫폼으로 발전하는 길을 선택했다. 데이터가 점점 늘어나는 상황에서 전문 검색은 대량의 데이터를 저장해서 처리하는 한 가지 방법에 불과했고, 다양한 사용 사례를 유연하게 지원하기 위해서는 검색 엔진을 뛰어넘는 플랫폼이 필요해졌다. 하지만 유연성을 확보하려면 데이터를 수집, 가공, 저장, 분석, 시각화하는 일련의 파이프라인을 구성하기 위해 다양한 오픈소스 소프트웨어를 조합해야 하는 불편함이 있었다. 엘라스틱은 바로 이 지점에서 사용자의 요구사항을 충족하기 위해 스택을 쌓아 올리기 시작했다.</p>
+<p>엘라스틱서치가 개발될 무렵 요르단 시셀은 사용자가 선택한 보관함으로 로그를 보내는 오픈소스 데이터 수집 도구인 로그스태시를 개발하고 있었고, 라시드 칸은 오픈소스 시각화 UI인 키바나를 개발하고 있었다. 사이 배넌은 두 사람과 함께 팀을 결성하여 엘라스틱서치, 로그스태시, 키바나를 합친 엘라스틱 스택을 개발했다.</p>
+<p>초창기에는 스택이 느슨한 형태로 개발되어 각자 원하는 버전이 제각각 출시하는 형태였으나 사용자 요구에 맞춰 버전을 동일하게 맞춘 제춤을 동시에 출시하기 시작했다. 2015년 베를린의 패킷비트라는 회사가 기존에 개발하고 있던 프로젝트와 협력하여 엣지 장비에서 로그스태시와 엘라스틱서치로 네트워크 데이터, 로그, 메트릭, 성능 진단 데이터를 보내는 경량 데이터 수집기 비츠를 제작한다.</p>
+<h2 id="13-엘라스틱-스택의-구성요소"><a class="header" href="#13-엘라스틱-스택의-구성요소">1.3 엘라스틱 스택의 구성요소</a></h2>
+<p>엘라스틱 스택은 일반적인 빅데이터 파이프라인을 구성하기 위한 데이터 수집, 가공, 저장, 분석, 시각화에 필요한 모든 소프트웨어를 갖추고 있다. 비츠와 로그스태시는 데이터를 수집하고 가공하는 역할, 엘라스틱서치는 저장하고 분석하는 역할, 키바나는 엘라스틱서치에 저장된 데이터를 시각화하고 모니터링하는 역할을 수행한다.</p>
+<h3 id="131-엘라스틱서치-분산-검색-엔진"><a class="header" href="#131-엘라스틱서치-분산-검색-엔진">1.3.1 엘라스틱서치: 분산 검색 엔진</a></h3>
+<ul>
+<li>엘라스틱서치는 검색 엔진이지만 구글이나 네이버 같은 포탈 서비스와는 또 다르다.</li>
+<li>엘라스틱서치는 모든 레코드를 JSON 도큐먼트 형태로 입력하고 관리한다.</li>
+<li>일반적인 데이터베이스와 마찬가지로 쿼리한 결과에 대해 일치하는 원본 도큐먼트를 반환한다.</li>
+<li>또한 텍스트 외에도 숫자, 날짜, IP 주소, 지리 정보등 다양한 데이터 타입에 최적화되어 있다.</li>
+<li>검색 엔진이면서 데이터베이스이기도 하고 텍스트 외에 다양한 데이터 타입을 지원하는 일종의 NoSQL 데이터베이스</li>
+</ul>
+<h4 id="구조"><a class="header" href="#구조">구조</a></h4>
+<ul>
+<li>텍스트나 도큐먼트의 경우 인덱싱 시점에 분석을 거쳐 용어 단위로 분해하여 역인데스 사전을 구축</li>
+<li>숫자나 키워드 타입의 데이터들은 집계에 최적화된 컬럼 기반 자료구조로 저장</li>
+<li>병렬 처리나 분산 처리를 할 수 있다.</li>
+<li>검색 엔진인 동시에 데이터베이스이기 때문에 RDBMS나 다른 NoSQL 제품보다 빠른 검색과 집계가 가능</li>
+<li>충분한 크기의 클러스터가 구성되어 있다면 데이터 양과 무관하게 1초 이내의 응답 속도를 기대할 수 있다.</li>
+</ul>
+<h4 id="장점-1"><a class="header" href="#장점-1">장점</a></h4>
+<ul>
+<li>검색 엔진으로 중요한 특징 중 하나로 스코어링, 검색어에 대한 유사도 스코어를 기반으로 한 정렬을 제공</li>
+<li>특히 복잡한 문자열 콘텐츠에서 검색을 수행할 때 큰 효과를 보인다.</li>
+<li>모든 통신을 REST API를 이용하도록 만들어 프로그래밍 언어와 무관하게 사용자가 쉽게 접근할 수 있다.</li>
+</ul>
+<h4 id="단점"><a class="header" href="#단점">단점</a></h4>
+<ul>
+<li>저장공간이 크게 압축되지 않고 시스템 리소스를 많이 사용한다.</li>
+<li>DSL 쿼리를 채용하는데 JOIN 쿼리가 사실상 어렵기 때문에 반정규화를 기본으로 모델링해야 한다.</li>
+<li>인덱스가 불변의 자료구조이기 때문에 도큐먼트를 수정/삭제하는 비용이 크다.</li>
+</ul>
+<h3 id="132-키바나-시각화와-엘라스틱서치-관리-도구"><a class="header" href="#132-키바나-시각화와-엘라스틱서치-관리-도구">1.3.2 키바나: 시각화와 엘라스틱서치 관리 도구</a></h3>
+<ul>
+<li>엘라스틱서치는 REST API가 잘 설계된 제품이긴 하지만 복잡한 요청을 일일이 작성하기에는 다소 불편할 수 있다.</li>
+<li>키바나는 이런 불편함을 해소하기 위해 엘라스틱서치에 대한 UI를 제공</li>
+<li>키바나는 엘라스틱서치에 대한 대부분의 관리 기능, API 실행 콘솔, 솔루션 페이지, 각 스택의 모니터링 페이지를 다양한 차트 및 테이블로 쉽게 구성할 수 있다.</li>
+</ul>
+<h3 id="133-로그스태시-이벤트-수집과-정제를-위한-도구"><a class="header" href="#133-로그스태시-이벤트-수집과-정제를-위한-도구">1.3.3 로그스태시: 이벤트 수집과 정제를 위한 도구</a></h3>
+<ul>
+<li>대량의 데이터를 검색하기 위해 가장 먼저 선행돼야 할 작업은 데이터를 적재하는 것</li>
+<li>데이터 적재는 데이터를 다룰 때 가장 손이 많이 가는 작업이며 꾸준한 모니터링과 개선이 필요한 부분</li>
+<li>로그스태시는 로그, 메트릭, 웹 애플리케이션 등 다양한 소스로부터 로그를 수집할 수 있게 도와준다.</li>
+<li>필터 기능이 있어 비정형이나 반정형 데이터를 분석하기 쉬운 형태로 정제할 수 있다.</li>
+<li>엘라스틱 서치 외에도 다양한 플랫폼으로 정제된 데이터를 보낼 수 있다.</li>
+</ul>
+<h4 id="장점-2"><a class="header" href="#장점-2">장점</a></h4>
+<ul>
+<li>확장 가능한 200개 이상의 플러그인 덕분에 별도의 코딩 없이 간단한 설정만으로 로그를 가공할 수 있다.</li>
+<li>엘라스틱서치의 인덱싱 성능 최적화를 위한 배치 처리와 병렬 처리가 장점</li>
+<li>영속적인 큐를 사용해 현재 처리 중인 이벤트의 최소 1회 전송을 보장</li>
+<li>유동적인 처리 방식으로 수집 중인 데이터양이 급증하는 부하 상황에서도 안정성을 보장</li>
+</ul>
+<h3 id="134-비츠-엣지단에서-동작하는-경량-수집-도구"><a class="header" href="#134-비츠-엣지단에서-동작하는-경량-수집-도구">1.3.4 비츠: 엣지단에서 동작하는 경량 수집 도구</a></h3>
+<ul>
+<li>이벤트 정보를 수집하려면 서비스가 동작하는 호스트에 설치가 필요한데, 로그스태시는 다양한 필터와 설정을 지원하는 만큼 무거움</li>
+<li>이를 위해 다양한 용도별로 최적화된 비트를 일컫는 경량 수집기 비츠를 사용</li>
+<li>각 비트는 로그 수집, 시스템 지표 등 특정 목적에 최적화된 에이전트이며 가볍기로 유명한 고 언어로 작성되었다.</li>
+<li>또한 로그스태시 수준의 복잡한 이벤트 가공은 지원하지 않아 가벼우므로 각 서비스 호스트에 비교적 부담 없이 설치할 수 있다.</li>
+</ul>
+<h4 id="사용-예"><a class="header" href="#사용-예">사용 예</a></h4>
+<ul>
+<li>이러한 양쪽의 장점을 활용하기 위해 보통 비츠와 로그스태시를 혼합하여 사용</li>
+<li>비츠에서 각 서비스 호스트의 정보를 수집하고 로그스태시에서 이를 취합하고 가공해 엘라스틱서치로 전송하는 형태로 사용</li>
+</ul>
+<h2 id="14-엘라스틱-스택의-용도"><a class="header" href="#14-엘라스틱-스택의-용도">1.4 엘라스틱 스택의 용도</a></h2>
+<ol>
+<li>전문 검색 엔진
+<ul>
+<li>가장 기본적인 용도</li>
+<li>전문은 단순한 문장부터 뉴스 기사나 논문 등 다양한 글의 전체 내용을 의미</li>
+<li>전문을 용어단위로 분석해 인덱싱해두고 이를 기반으로 검색을 수행하는 역인덱싱 기법을 많이 사용</li>
+</ul>
+</li>
+<li>로그 통합 분석
+<ul>
+<li>여러 장비와 서비스에서 발생하는 로그들을 통합하고 검색하는데 최적화된 솔루션</li>
+<li>엘라스틱서치에 저장된 데이터들은 교차 분석이나 연관 분석이 쉽다.</li>
+<li>인덱스 패턴을 사용하여 한 번에 여러 인덱스를 동시에 조회할 수 있다.</li>
+<li>복잡한 JOIN 쿼리 없이도 각기 다른 서비스에서 동시간대에 발생한 로그를 쉽게 찾을 수 있다.</li>
+</ul>
+</li>
+<li>보안 이벤트 분석
+<ul>
+<li>다양한 장비들로부터 보안 이벤트를 수집하고 분석</li>
+</ul>
+</li>
+<li>애플리케이션 성능 분석
+<ul>
+<li>애플리케이션의 상태를 지속적으로 모니터링</li>
+<li>엘라스틱 스택의 애플리케이션 성능 모니터링 도구 APM</li>
+</ul>
+</li>
+<li>머신러닝
+<ul>
+<li>엘라스틱 스택에서 유료 라이선스 구매시 사용할 수 있는 강력한 기능</li>
+<li>데이터를 엘라스틱서치에 넣은 다음 머신러닝 기법을 활용해 패턴을 발견</li>
+</ul>
+</li>
+</ol>
+<h2 id="15-빅데이터-플랫폼의-일부로-동작하는-엘라스틱-스택"><a class="header" href="#15-빅데이터-플랫폼의-일부로-동작하는-엘라스틱-스택">1.5 빅데이터 플랫폼의 일부로 동작하는 엘라스틱 스택</a></h2>
+<ul>
+<li>엘라스틱 스택은 간편하게 빅데이터 파이프라인을 구성하고 싶은 기업의 요구사항을 충족</li>
+<li>우버의 경우 대규모 실시간 데이터 통찰 플랫폼인 가이로스를 구축
+<ul>
+<li>아파치 카프카 토픽으로부터 가이로스 수집 파이프라인을 거쳐 분석 대상 데이터 저장</li>
+<li>고객 질의가 가이로스 질의 서비스를 거쳐 엘라스틱 검색/집계 쿼리를 활용</li>
+<li>장기 분석을 위해 엘라스틱서치에 저장된 분석 데이터를 HDFS에 누적</li>
+<li>하이브와 프레스토를 사용해 통찰 제공</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>

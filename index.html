@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>03. 저장소와 검색 - suffed-raid archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">suffed-raid archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<p>DB가 데이터를 저장하는 방법과 데이터를 요청했을 때 다시 찾을 수 있는 방법</p>
+</blockquote>
+<p><code>개발자가 좋은 성능을 내게끔 엔진이 내부에서 수행되는 작업에 대해 대략적인 개념이 필요하다</code></p>
+<pre><code class="language-jsx">DB에서 특정 키의 값을 효율적으로 찾기 위해서는 다른 데이터 구조가 필요하다
+그러므로 색인의 구조를 살펴보고 여러 색인 구조를 비교하자
+</code></pre>
+<h2 id="색인"><a class="header" href="#색인">색인</a></h2>
+<ul>
+<li>일반적인 개념은 어떤 부가적인 메타데이터를 유지하는 것</li>
+<li>DB 내용에 영향 X, 단지 질의 성능에만 영향</li>
+<li>쓰기(Insert) 과정에서 오버헤드 발생</li>
+<li>어떤 종류의 색인이라도 쓰기 속도를 늦춘다</li>
+</ul>
+<h2 id="해시-색인"><a class="header" href="#해시-색인">해시 색인</a></h2>
+<ul>
+<li>Key-value 형태의 <strong>hash map</strong> 으로 구현</li>
+<li>일반적이고 복작합 색인을 위한 구성 요소로 유용</li>
+<li>키를 데이터 파일의 바이트 오프셋에 매핑</li>
+<li>메모리에 유지하기 때문에 고성능 읽기, 쓰기를 보장</li>
+<li>키의 값이 자주 쟁신되는 상황에 적합</li>
+</ul>
+<p><strong>Log-structured</strong> 형식으로 데이터를 저장하면, 매번 새로운 데이터가 추가됨으로 디스크 공간이 부족해진다.</p>
+<p>디스크 공간을 해결하기 위해 특정 크기의 <strong>Segment</strong>로 나누고, 나눠진 파일에 대해 <strong>Compaction</strong>을 수행하여 한다.</p>
+<ul>
+<li>
+<p>Compaction?</p>
+<p>중복된 키를 버리고 각 키의 최신 갱신 값만 유지하는 것을 의미</p>
+</li>
+</ul>
+<p><code>범위 질의에 효율적이지 않다</code></p>
+<p><code>메모리에 저장해야 함으로 키가 너무 많으면 문제가 된다</code></p>
+<h2 id="ss-테이블과-lsm-트리"><a class="header" href="#ss-테이블과-lsm-트리">SS 테이블과 LSM 트리</a></h2>
+<p>위에서 설명한 <strong>해시 색인</strong>에서 Key로 정렬하는 것</p>
+<p>이처럼 정렬된 형식을 <strong>Sorted String Table</strong> 즉 <strong>SS 테이블</strong> 이라고 한다.</p>
+<p>해쉬 색인과 다른 점은 세그먼트 파일 내 Key 값이 한개만 존재한다.</p>
+<ul>
+<li>
+<p>이로인해 컴팩션 과정은 이미 보장되어 있다</p>
+<p>여러 세그먼트 파일을 병합정렬을 통해 최신화된 세그먼트 파일이 생성된다.</p>
+</li>
+</ul>
+<p>정렬로인해 모든 Key의 색인을 유지할 필요가 없다.</p>
+<ul>
+<li>범위 질의 검색 시 <strong>SS 테이블</strong>에 저장된 Key값을 통해 검색이 가능하다</li>
+</ul>
+<p>새로운 쓰기가 들어오면, 인메모리(<strong>memtable</strong>)에 저장을 하고 <strong>memtable</strong> 용량이 임곗값보다 커지면 <strong>SS 테이블</strong>에 Key-value를 적재 후 <strong>memetable</strong>에서 삭제 시킨다.</p>
+<p>여기서 적재한다는 뜻은 파일(<strong>Segment</strong>)로 저장한다</p>
+<p>읽기 요청이 들어온 경우 <strong>memtable</strong>에서 조회 후, 그 다음 최신 <strong>Segment</strong>에서 찾는 순서로 진행된다</p>
+<h2 id="lsm-트리"><a class="header" href="#lsm-트리">LSM 트리</a></h2>
+<p>정렬된 파일 병합과 <strong>Compaction</strong> 원리를 기반으로 하는 저장소 엔진을 LSM 저장소 엔진이라 부른다.</p>
+<p>DB에 존재하지 않는 Key를 찾는 경우 느릴 수 있다. <strong>memtable → 최신 Segment → 이전 Segment</strong></p>
+<p>위 순서로 가장 오래된 <strong>Segment</strong>까지 거실러 올라감으로 이를 최적화하기 위해 <strong>Bloom filter</strong>를 추가로 사용한다.</p>
+<p><strong>SS 테이블</strong>을 압축하고 병합하는 순서와 시기를 결정하는 다양한 전략이 있다.</p>
+<ul>
+<li>크기 계층
+<ul>
+<li>상대적으로 좀더 새롭고 작은 SS 테이블을 상대적으로 오래됐고 큰 SS테이블에 연이어 병합</li>
+</ul>
+</li>
+<li>레벨 컴팩션
+<ul>
+<li>Key 범위를 더 작은 SS테이블로 나누고 오래된 데이터는 개별 ‘레벨’로 이동</li>
+</ul>
+</li>
+</ul>
+<h2 id="b-트리"><a class="header" href="#b-트리">B 트리</a></h2>
+<p>가장 널리 사용되는 색인 구조</p>
+<p>고정된 블록이나 페이지로 나누고 한 번에 하나의 페이지에 읽기 또는 쓰기를 한다.</p>
+<p>한 페이지는 B 트리의 **루트(root)**로 지정된다. 색인에서 키를 찾을려면 루트에서 시작한다.</p>
+<p>페이지는 여러 키와 하위 페이지의 참조를 포함한다. 각 하위 페이지는 키가 계속 이어지는 범위를 담당하고 참조 사이의 키는 해당 범위 경계가 어디인지 나타낸다.</p>
+<p>최종적으로는 개별 키(leaf page)를 포함하는 페이지에 도달한다. 이 페이지는 각 키의 값을 포함하거나 값을 찾을 수 있는 페이지의 참조를 포함한다.</p>
+<p>B 트리의 한 페이지에서 하위 페이지를 참조하는 수를 분기 계수라고 부른다.</p>
+<h2 id="b-트리와-lsm-트리-비교"><a class="header" href="#b-트리와-lsm-트리-비교">B 트리와 LSM 트리 비교</a></h2>
+<p>LSM 트리는 보통 쓰기에서 더 빠른 반면 B 트리는 읽기에서 더 빠르다.</p>
+<p>LSM 트리에서 더 느린 이유는 각 컴팩션 단계에 있는 여러 가지 데이터 구조와 SS 테이블을 확인해야 하기 때문이다.</p>
+<p>LSM 트리는 보통 B 트리보다 쓰기 처리량을 높게 유지할 수 있다.</p>
+<p>상대적으로 쓰기 증폭이 더 낮고 트리에서 여러 페이지를 덮어쓰는 것이 아니라 순차적으로 컴팩션된 SS 테이블 파일을 쓰기 때문이다.</p>
+<p>LSM 트리는 압축률이 더 좋다. 보통 B 트리보다 디스크에 더 적은 파일을 생성한다. B 트리 저장소 엔진은 파편화로 인해 사용하지 않는 디스크 공간 일부가 남는다.</p>
+<p>LSM 단점으로는 컴팩션 과정이 때로는 진행 중인 읽기와 쓰기의 성능에 영향을 준다는 점</p>
+<p>컴팩션의 또 다른 문제로는 높은 쓰기 처리량에서 발생한다. 대역폭은 유한함으로 단순 쓰기와 <strong>memtable</strong>을 디스크로 방출과 컴팩션 쓰레드가 대역폭을 공유해야 한다.</p>
+<p>B 트리의 장점은 각 키가 색인의 한 곳에만 정확하게 존재한다는 점이다. 로그 구조화 저장소 엔진은 다른 세그먼트에 같은 키의 다중 복사본이 존재할 수 있다.</p>
+<h2 id="트랜잭션-처리나-분석"><a class="header" href="#트랜잭션-처리나-분석">트랜잭션 처리나 분석?</a></h2>
+<ul>
+<li>online transaction processing, <em><strong>OLTP</strong></em>
+<ul>
+<li>Web application에서 발생하는 transaction 데이터</li>
+</ul>
+</li>
+<li>online analytic processing, <strong>OLAP</strong>
+<ul>
+<li><strong>OLTP</strong>에서 발생한 데이터를 정리 가공 후 저장</li>
+<li>Data warehouse</li>
+<li>사용자 입장의 DB가 아닌 비지니스 분석가가 사용</li>
+<li><strong>OLTP</strong> 시스템보다 훨씬 더 적은 수의 질의를 다루지만 각 질의는 대개 매우 다루기 어렵고 짧은 시간에 수백만 개의 레코드를 스캔해야 한다.</li>
+<li>칼럼 지향 저장소 및 칼럼 압축을 통해 데이터를 관리</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="data/04. 부호화와 발전.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="data/04. 부호화와 발전.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

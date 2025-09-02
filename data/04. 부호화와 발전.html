@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>04. 부호화와 발전 - suffed-raid archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">suffed-raid archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>애플리케이션은 필연적으로 시간이 지남에 따라 변하기 때문에 변경 사항을 쉽게 적용할 수 있게 시스템을 구축해야한다. 대부분의 경우, 기능을 변경하려면 저장하는 데이터도 변경이 필요하다.</p>
+<p>많은 서비스가 한 번에 모든 노드에 배포하는 것보다 순회식 업그레이드가 필요하다. 따라서 시스템을 흐르는 모든 데이터는 하위 호환성과 상위 호환성을 제공하는 방식으로 부호화해야 한다.</p>
+<ul>
+<li>하위 호환성: 새로운 코드가 예전 데이터를 읽을 수 있음</li>
+<li>상위 호환성: 예전 코드가 새로운 데이터를 읽을 수 있음</li>
+</ul>
+<h2 id="데이터-부호화-형식"><a class="header" href="#데이터-부호화-형식">데이터 부호화 형식</a></h2>
+<p>데이터를 파일에 쓰거나 네트워크를 통해 전송하려면 스스로를 포함한 일련의 바이트열의 형태로 부호화해야한다. 부호화는 데이터 구조를 네트워크나 디스크 상의 바이트열로 변환하는 다양한 방법으로, 애플리케이션의 아키텍처와 배포의 선택 사항에도 영향을 미친다.</p>
+<ul>
+<li>부호화: 인메모리 표현에서 바이트열로의 전환, 직렬화나 마샬링이라고도 한다.</li>
+<li>복호화: 부호화의 반대 표현, 파싱, 역직렬화, 언마샬링이라고도 부른다.</li>
+</ul>
+<h3 id="언어별-형식"><a class="header" href="#언어별-형식">언어별 형식</a></h3>
+<p>자바의 <code>Serializable</code>, 루비의 <code>Marshal</code>, 파이썬의 <code>pickle</code> 등 프로그래밍 언어에는 인메모리 객체를 바이트열로 부호화하는 기능을 내장한다.</p>
+<h4 id="문제점"><a class="header" href="#문제점">문제점</a></h4>
+<ul>
+<li>다른 언어에서 데이터를 읽기 힘들기 때문에 통합을 방해한다.</li>
+<li>복호화 과정이 임의의 클래스를 인스턴스화하는 것이기 때문에 보안 문제가 되기도 한다.</li>
+<li>쉬운 부호화를 우선시하다 상하위 호환성의 불편한 문제가 등한시 되는 경우가 있다.</li>
+</ul>
+<h3 id="json과-xml-이진-변형"><a class="header" href="#json과-xml-이진-변형">JSON과 XML, 이진 변형</a></h3>
+<p>많은 프로그래밍 언어에서 읽고 쓸 수 있는 표준화된 부호화. JSON, XML, CSV는 텍스트 형식이기 때문에 사람이 읽을 수도 있다. 선택적 스키마 언어가 있어 때로는 유용하지만 때로는 방해된다. 이 형식들은 데이터 타입에 대해 다소 모호한 점이 있기 때문에 숫자나 이진 문자열과 같은 항목은 주의가 필요하다.</p>
+<h4 id="문제점-1"><a class="header" href="#문제점-1">문제점</a></h4>
+<ul>
+<li>XML과 CSV는 숫자와 수로 구성된 문자열을 구분할 수 없다. JSON은 구별할 수는 있지만 정수와 부동소수점 수를 구별하지 않고 정밀도를 지정하지 않는다.</li>
+<li>큰 수를 다룰 때 문제가 된다.</li>
+<li>유니코드 문자열은 지원하지만 이진 문자열을 지원하지 않는다.</li>
+<li>XML과 JSON 모두 스키마를 지원하지만 구현하기가 난해하다.</li>
+<li>CSV는 스키마가 없다.</li>
+</ul>
+<h3 id="이진-부호화"><a class="header" href="#이진-부호화">이진 부호화</a></h3>
+<p>조직 내에서만 사용하는 데이터라면 공통 분모를 찾는 부담감이 덜하기 때문에 조금 더 간편하고 파싱이 빠른 형식을 선택할 수 있다. 데이터셋이 테라바이트 정도가 되면 데이터 타입 선택이 큰 영향을 미치기 때문이다.</p>
+<p>JSON, XML은 이진 형식에 비해 훨씬 많은 공간을 사용한다. 이는 다양한 이진 부호화의 개발로 이어졌다.</p>
+<h4 id="이진-부호화의-종류"><a class="header" href="#이진-부호화의-종류">이진 부호화의 종류</a></h4>
+<p>스리프트와 프로토콜 버퍼는 동일한 원리를 사용하며, 프로그래밍 코드로부터 생성되고 이를 의존한다. 또한 스키마를 변경할 때 매핑을 수동으로 갱신해야 한다. 그러므로 정적 타입 언어에 유용하다. 아브로는 동적 생성 스키마를 고려하여 개발되었으므로 스키마 변경을 간단하게 수행할 수 있다.</p>
+<ol>
+<li>스리프트</li>
+<li>프로토콜 버퍼</li>
+<li>아브로</li>
+</ol>
+<p>스리프트, 프로토콜 버퍼, 아브로같은 이진 스키마 기반 형식은 짧은 길이로 부호화가 가능하며 명확하게 정의된 상위 호환성과 하위 호환성의 맥락에서 효율적이다. 이러한 스키마는 정적 타입 언어에서 문서와 코드 생성에 유용하지만 사람이 읽으려면 복호화가 필요하다는 단점이 있다.</p>
+<h5 id="쓰기-스키마"><a class="header" href="#쓰기-스키마">쓰기 스키마</a></h5>
+<p>데이터를 전송할 때 부호화를 위해 애플리케이션에 포함하는 스키마</p>
+<h5 id="읽기-스키마"><a class="header" href="#읽기-스키마">읽기 스키마</a></h5>
+<p>어떤 데이터를 복호화할 때 의존하는 특정 스키마</p>
+<h2 id="데이터플로-모드"><a class="header" href="#데이터플로-모드">데이터플로 모드</a></h2>
+<p>데이터플로는 매우 추상적인 개념으로, 하나의 프로세스에서 다른 프로세스로 데이터를 전달하는 방법을 말한다. 누가 데이터를 부호화하고 누가 복호화 하는가?</p>
+<h3 id="1-데이터베이스"><a class="header" href="#1-데이터베이스">1. 데이터베이스</a></h3>
+<p>데이터 베이스에 기록하는 프로세스가 부호화하고 데이터베이스에서 읽는 프로세스가 복호화</p>
+<h3 id="2-rest와-rpc-서비스"><a class="header" href="#2-rest와-rpc-서비스">2. REST와 RPC 서비스</a></h3>
+<p>클라이언트가 요청을 부호화하고 서버는 요청을 복호화해서 응답을 부호화하고 최종적으로 클라이언트가 응답을 복호화</p>
+<ul>
+<li>서비스 지향 설계, 마이크로서비스 설계를 지향하면서 중요성이 대두</li>
+<li>미리 정해진 입력과 출력만 허용한 애플리케이션 특화 API</li>
+<li>서비스를 배포와 변경에 독립적으로 만들어 애플리케이션 변경과 유지보수를 더 쉽게 하는 것</li>
+<li>서버와 클라이언트가 사용하는 데이터 부호화는 서비스 API의 버전 간 호환이 가능해야 한다.</li>
+</ul>
+<h4 id="rest"><a class="header" href="#rest">REST</a></h4>
+<p>프로토콜이 아니라 HTTP의 원칙을 토대로 한 설계 철학. 실험과 디버깅에 적합하고 모든 주요 프로그래밍 언어와 플랫폼이 지원한다. 다양한 생태계가 구성되어 있다. URL이나 HTTP Accept 헤더에 버전 번호를 사용하는 방식이 일반적이다.</p>
+<h4 id="rpc"><a class="header" href="#rpc">RPC</a></h4>
+<p>원격 프로시저 호출(remote procedure call, RPC) 모델은 원격 네트워크 서비스 요청을 같은 프로세스 안에서 특정 프로그래밍 언어의 함수나 메서드를 호출하는 것과 동일하게 사용 가능하게 해준다. 이를 위치 투명성이라 한다.</p>
+<h5 id="결함"><a class="header" href="#결함">결함</a></h5>
+<ul>
+<li>로컬 함수 호출은 예측이 가능한 반면 네트워크 요청은 예측이 어렵다</li>
+<li>네트워크 문제로 요청이나 응답이 유실되거나 느려지거나 아예 응답을 하지 않을 수도 있다.</li>
+<li>네트워크 문제는 일상적이며 제어할 수 없다.</li>
+<li>실제로는 처리되고 응답만 유실될 수 있다 (멱등성 문제)</li>
+</ul>
+<p>이런 문제를 해결하기 위해 차세대 RPC 프레임워크는 비동기 작업을 캡슐화하거나 시간에 따른 일련의 요청과 응답으로 구성된 스트림을 제공하기도 한다.</p>
+<h3 id="3-메세지"><a class="header" href="#3-메세지">3. 메세지</a></h3>
+<ul>
+<li>송신자가 부호화하고 수신자가 복호화하는 메시지를 서로 전송해서 노드 간 통신</li>
+<li>클라이언트 요청(메시지)을 낮은 지연 시간으로 다른 프로세스에 전달한다는 점에서는 RPC와 비슷하나, 메세지를 직접 전송하지 않고 임시로 메시지를 저장하는 메시지 브로커 또는 큐, 미들웨어 라는 중간 단계를 거친다는 점은 데이터 베이스와 유사하다.</li>
+<li>특정 데이터 모델을 강요하지 않으므로 유연성을 가진다.</li>
+</ul>
+<h4 id="장점"><a class="header" href="#장점">장점</a></h4>
+<ul>
+<li>수신자에 장애가 있을 때 메시지 브로커가 버퍼처럼 동작할 수 있으므로 시스템 안정성이 향상됨</li>
+<li>죽었던 프로세스에 메시지를 다시 전송할 수 있어 유실이 방지됨</li>
+<li>송신자가 수신자의  IP주소와 포트 번호를 알 필요가 없음</li>
+<li>하나의 메시지를 여러 수신자로 전송할 수 있다.</li>
+<li>송신자와 수신자가 논리적으로 분리된다.</li>
+</ul>
+<h2 id="결론"><a class="header" href="#결론">결론</a></h2>
+<p>주의를 기울이면 ==상하위 호환성과 순회식 업그레이드가 가능하다는 결론==에 다다른다.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../data/03. 저장소와 검색.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../data/06. 파티셔닝.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../data/03. 저장소와 검색.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../data/06. 파티셔닝.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

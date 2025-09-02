@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>09. 일관성과 합의 - suffed-raid archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">suffed-raid archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>지연 복제로 인해 데이터 서로 다른 DB를 본다면, 다른 데이터를 볼 가능성이 크다.</p>
+<p>이런 불일치는 DB가 어떤 복제 방법을 쓰던 상관없이 일어난다.</p>
+<p>복제 DB는 최소한 최종적 일관성을 보장함으로 시간이 지나면 결국 같은 값을 반환한다.</p>
+<p>일시적인 문제이지만 매우 약한 보장이다.</p>
+<p>데이터 시스템이 선택적으로 제공할 수 있는 강한 일관성 모델을 알아보자</p>
+<h2 id="선형성"><a class="header" href="#선형성">선형성</a></h2>
+<p>시스템에 데이터 복사본이 하나만 있고 그 데이터를 대상으로 수행하는 모든 연산은 원자적인 것처럼 보이게 만드는 것이다.</p>
+<p>클라이언트가 쓰기를 성공하면 그 DB를 읽는 모든 클라이언트는 방금 쓰여진 값을 볼 수 있어야한다. <strong>최신성 보장</strong></p>
+<h3 id="비선형성-시스템"><a class="header" href="#비선형성-시스템">비선형성 시스템</a></h3>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/a2e08bdc-35bc-4edf-bd7c-db6bd64592c3/68c337a2-e4a5-458e-9c13-7044813ae97a/Untitled.png" alt="Untitled" /></p>
+<h3 id="선형성-시스템"><a class="header" href="#선형성-시스템">선형성 시스템</a></h3>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/a2e08bdc-35bc-4edf-bd7c-db6bd64592c3/c4d95389-ff10-4c68-b1f7-adf694402122/Untitled.png" alt="Untitled" /></p>
+<p>새로운 값을 반환한적 있는 데이터는 후속 읽기도 반드시 새로운 값을 반환해야 한다</p>
+<p><code>쓰기 연산이 아직 완료되지 않았더라도</code></p>
+<h3 id="선형성에-기대기"><a class="header" href="#선형성에-기대기">선형성에 기대기</a></h3>
+<ul>
+<li>잠금과 리더 선출</li>
+</ul>
+<pre><code class="language-jsx">단일 리더 복제를 사용하는 시스템은 리더가 하나만 존재하도록 보장
+리더를 선출하는 한 가지 방법은 잠금을 사용하는 것
+모든 노드가 시작할 때 잠금 획득을 시도하고 성공한 노드가 리더가 된다.
+
+잠금을 구현할려면 성형적이어야 한다.
+</code></pre>
+<ul>
+<li>제약 조건과 유일성 보장</li>
+</ul>
+<pre><code class="language-jsx">사용자의 계정, 이메일 주소는 사용자 한명을 식별할 수 있는 유일한 데이터
+파일 저장 시스템에서는 경로와 파일 이름이 동일하게 있을 수 없다.
+창고에 있는 재고보다 더 팔지 못하게 막거나 비행기, 티케팅 예약을 보장
+
+유일성을 위한 선형성 필요
+</code></pre>
+<ul>
+<li>채널 간 타이밍 의존성</li>
+</ul>
+<pre><code class="language-jsx">비선형성 시스템에서 부가적인 통신 채널이 있었기에 발견
+사진 저장 시스템, 저장된 사진을 압축하는 시스템
+선형적이지 않다면 사진을 저장하기도 전에 다른 경쟁 조건의 시스템이 먼저 작동할 수 있다.
+
+경쟁 조건 선형성 필요
+</code></pre>
+<h2 id="선형성-시스템-구현하기"><a class="header" href="#선형성-시스템-구현하기">선형성 시스템 구현하기</a></h2>
+<p>선형성은 근본적으로 ‘데이터 복사본이 하나만 있는 것처럼 동작하고 그 데이터에 실행되는 모든 연산은 원자적’ 실제로 그러면 결함을 견뎌낼 수 없다. 내결함성을 지니기 위해 복제를 사용함</p>
+<ul>
+<li>단일 리더 복제(선형적일 수 있음)</li>
+<li>합의 알고리즘(선형적)</li>
+<li>다중 리더 복제(비선형적)</li>
+<li>리더 없는 복제(아마도 비선형적)</li>
+</ul>
+<h3 id="선형성과-정족수"><a class="header" href="#선형성과-정족수">선형성과 정족수</a></h3>
+<p>엄격한 정족수를 사용한 읽기 쓰기는 선형적인 것 처럼 보인다.</p>
+<p>하지만, 네트워크 지연의 변동이 심하면 경쟁 조건이 생길 수 있다.</p>
+<h2 id="순서화-보장"><a class="header" href="#순서화-보장">순서화 보장</a></h2>
+<p>트랜잭션의 직렬성은 어떤 순서에 따라 실행됨을 보장하는 것</p>
+<p>분산 시스템의 타임스탬프, 시계 사용은 시간을 통해 순서를 결정하기 위한 방법들</p>
+<h3 id="인과성"><a class="header" href="#인과성">인과성</a></h3>
+<p>결과가 나타나기 전에 원인이 발생한다. 무엇이 무엇보다 먼저 일어났는가를 정의</p>
+<p>인과성에 의해 부과된 순서를 지키면 그 시스템은 인과적으로 일관적이라고 한다.</p>
+<p>이벤트에 순서가 부과됨으로 부분 순서를 정의 한다</p>
+<p><strong>선형성은 긴과적 일관성보다 강하다</strong></p>
+<p>선형성은 시스템의 전체 순서를 정한다. 선형성은 인과성을 내포한다.</p>
+<h3 id="일련번호-순서화"><a class="header" href="#일련번호-순서화">일련번호 순서화</a></h3>
+<p>모든 인과적 의존성을 추적하는건 실용성이 떨어지고, 오버헤드가 큼</p>
+<ul>
+<li>일련번호, 타임스탬프로 이벤트 순서를 정하는 방법</li>
+</ul>
+<h2 id="분산-트랜잭션과-합의"><a class="header" href="#분산-트랜잭션과-합의">분산 트랜잭션과 합의</a></h2>
+<p>비공식적으로 합의의 목적은 단지 여러 노드들이 무언가에 동의하게 만드는 것</p>
+<ul>
+<li>노드 리더 선출</li>
+<li>노드 원자적 커밋</li>
+</ul>
+<h3 id="원자적-커밋과-2단계-커밋"><a class="header" href="#원자적-커밋과-2단계-커밋">원자적 커밋과 2단계 커밋</a></h3>
+<p>원자성은 실패한 트랜잭션이 절반만 완료된 결과나 절반만 갱신된 상태로 DB를 어지럽게 하는 걸 막아준다.</p>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/a2e08bdc-35bc-4edf-bd7c-db6bd64592c3/e9bc4da4-7f23-4587-8a98-c0097b32cf9b/Untitled.png" alt="Untitled" /></p>
+<p>2단계 커밋은 여러 노드가 커밋되거나 어보트할 수 있도록 보장하는 알고리즘</p>
+<ul>
+<li>3단계 커밋도 있음</li>
+</ul>
+<h3 id="현실의-분산-트랜잭션"><a class="header" href="#현실의-분산-트랜잭션">현실의 분산 트랜잭션</a></h3>
+<ul>
+<li>분산 시스템에서 원자적 커밋을 달성하여 안전성 보장을 제공</li>
+<li>운영상의 문제 유발</li>
+<li>성능 이슈의 원인</li>
+</ul>
+<p><strong>정확히 한번 메시지 처리</strong></p>
+<p>메시지 확인과 DB 쓰기를 단일 트랜잭션에서 원자적으로 커밋함으로써 이를 구현할 수 있다.</p>
+<p><strong>XA 트랜잭션</strong></p>
+<p>X/Open XA는 이종 기술에 걸친 2단계 커밋을 구현하는 표준</p>
+<p>XA는 프로토콜이 아닌 트랜잭션 코디네이터와 연결되는 인터페이스를 제공하는 C API</p>
+<p><code>코디네이터 : 트랜잭션 관리자</code></p>
+<h3 id="내결합성을-지닌-합의"><a class="header" href="#내결합성을-지닌-합의">내결합성을 지닌 합의</a></h3>
+<p>비공식적으로 합의는 여러 노드가 어떤 것에 동의하는 것을 의미한다.</p>
+<p>여러 사용자가 동시에 동일한 좌석 예약을 하는 경우 처럼 공존할 수 없는 연산들 중 어떤 것이 승자가 되는 지를 결정하기 위해 합의 알고리즘을 사용할 수 있다.</p>
+<p>하나 또는 그 이상의 노드들이 값을 제안하고 합의 알고리즘이 값 중 하나를 결정한다.</p>
+<ul>
+<li><strong>균일한 동의</strong> : 어떤 두 노드도 다르게 결정하지 않는다.</li>
+<li><strong>무결성</strong> : 어떤 노드도 두 번 결정하지 않는다.</li>
+<li><strong>유효성</strong> : 한 노드가 값 v를 결정한다면 v는 어떤 노드에서 제안된 것이다.</li>
+<li><strong>종료</strong> : 죽지 않은 노드는 결국 어떤 값을 결정한다.</li>
+</ul>
+<p><strong>합의 알고리즘의 가정</strong></p>
+<ul>
+<li>죽은 노드는 돌아오지 않는다</li>
+<li>과반수의 노드는 존재해야 한다</li>
+<li>비잔틴 결함은 없다고 가정한다</li>
+</ul>
+<h3 id="합의의-제약"><a class="header" href="#합의의-제약">합의의 제약</a></h3>
+<p>합의 알고리즘을 통해 분산 시스템에서 일관성과 내결함성을 모두 달성할 수 있다. 그러나 합의 알고리즘을 유지하기 위한 비용이 적지 않다.</p>
+<ul>
+<li>동기식 복제가 강제됨</li>
+<li>과반수에 대한 제약</li>
+<li>노드 수 변경에 대한 제약</li>
+<li>네트워크 문제에 민감</li>
+</ul>
+<h3 id="정리"><a class="header" href="#정리">정리</a></h3>
+<p>주키퍼 같은 도구는 애플리케이션이 사용할 수 있는 합의, 장애 감지, 멤버십 서비스를 ‘위탁’하는데 중요한 역할을 수행한다 사용하기 쉽지 않지만 8장에서 설명한 모든 문제를 이겨낼 수 있는 자신만의 알고리즘을 개발하려고 하는 것보다는 훨씐 낫다. 합의로 환원될 수 있는 문제 중 하나를 원하고 그것이 내결합성을 지니기를 윟나다면 주키퍼 같은 것을 쓰는 게 현명하다.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../data/07. 트랜잭션.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../data/10. 일괄 처리.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../data/07. 트랜잭션.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../data/10. 일괄 처리.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
